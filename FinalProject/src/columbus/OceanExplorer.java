@@ -29,39 +29,7 @@ public class OceanExplorer extends Application{
 	//	startSailing();
 		
 	}
-	//My initial StartSailing
-	//we will need to change the movements after CASE
-	/*
-	private void startSailing(){
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
-			@Override
-			public void handle(KeyEvent ke) {
-			 switch(ke.getCode()){
-			 	case RIGHT:
-			 		oceanMap.getPlayer().goEast();
-			 		break;
-			 	case LEFT:
-			 		oceanMap.getPlayer().goWest();
-			 		break;
-			 	case UP:
-			 		oceanMap.getPlayer().goNorth();
-			 		break;
-			 	case DOWN:
-			 		oceanMap.getPlayer().goSouth();
-			 		break;
-			 	default:
-			 		break;
-			 }
-			 updateShips();
-			}
-		});
-	}
-	
-	*/
-	
-	
-	
-	
+
 	
 	/*
 	 * Main launches the game
