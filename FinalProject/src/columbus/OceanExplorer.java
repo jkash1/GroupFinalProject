@@ -14,7 +14,7 @@ public class OceanExplorer extends Application{
 	OceanMap oceanMap;
 	Scene scene;
 	AnchorPane root;
-	int t = 0;
+
 	
 	
 	
