@@ -7,7 +7,7 @@ public class OceanMap {
 	static OceanMap oceanMap;
 	
 	//Creates a 2 dimensional integer array to store the map
-	int[][] map = new int[10][10];
+	int[][] map;
 	
 	//Integer variables for map dimensions, normal island count, and pirate island count
 	int dimension;
@@ -22,6 +22,9 @@ public class OceanMap {
 		this.dimension = 10;
 		this.islandCount = 10;
 		this.pirateIslandCount = 2;
+		
+		//Creates the 2 dimensional array with the dimensions specified
+		map = new int[dimension][dimension];
 		
 		//Creates local variables for current island count and island coordinates
 		int currentIslands = 0;
