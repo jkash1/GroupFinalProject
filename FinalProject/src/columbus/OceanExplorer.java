@@ -180,5 +180,4 @@ public class OceanExplorer extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-
-} //testing Git commit -Antonio
+}
