@@ -1,7 +1,6 @@
 package columbus;
 
 import java.util.LinkedList;
-
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -83,9 +82,6 @@ public class OceanExplorer extends Application{
 		});
 	}
 	
-	/**
-	 * Draws the Grid
-	 */
 	public void drawMap() {
 		//Iterates through every square on the map
 		for(int x = 0; x < dimensions; x++) {
@@ -97,8 +93,9 @@ public class OceanExplorer extends Application{
 				rect.setStroke(Color.TURQUOISE);
 				rect.setFill(Color.PALETURQUOISE);
 				
-				//Adds a blue square to the pane
+				//Adds a blue square to the pane and pushes it to the back so ships display over them
 				root.getChildren().add(rect);
+				rect.toBack();
 				
 				//Draws an island of the desired type
 				if(map[x][y] == 1) {
@@ -147,6 +144,9 @@ public class OceanExplorer extends Application{
 		ShipInterface pirateShip = new PirateShip(x, y);
 		ImageView pirateShipImageView = createShipImage(pirateShip);
 		
+		//Adds each new pirate ship to the list of observers for the player ship
+		((PlayerShip) ship).addObserver((PirateShip) pirateShip);
+		
 		//Adds the ships image view to the pane
 		root.getChildren().add(pirateShipImageView);
 		
@@ -187,13 +187,15 @@ public class OceanExplorer extends Application{
 		shipImageView.setX(ship.getShipLocation().x * scale);
 		shipImageView.setY(ship.getShipLocation().y * scale);
 		
-		//TODO Update the image views for every pirate ship
+		//Updates the image views for each pirate ship
+		for(int i = 0; i < pirates.size(); i++) {
+			pirateImages.get(i).setX(pirates.get(i).getShipLocation().x * scale);
+			pirateImages.get(i).setY(pirates.get(i).getShipLocation().y * scale);
+		}
 	}
 	
-	/*
-	 * Main launches the game
-	 */
 	public static void main(String[] args) {
+		//Launches the game
 		launch(args);
 	}
 }

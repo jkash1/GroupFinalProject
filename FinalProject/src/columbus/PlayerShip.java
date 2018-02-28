@@ -1,8 +1,9 @@
 package columbus;
 
 import java.awt.Point;
+import java.util.Observable;
 
-public class PlayerShip implements ShipInterface {
+public class PlayerShip extends Observable implements ShipInterface {
 	//Creates global variables for oceanMap, map array, and location
 	OceanMap oceanMap;
 	int[][] map;
@@ -30,6 +31,7 @@ public class PlayerShip implements ShipInterface {
 			if(map[location.x][location.y - 1] == 0) {
 				//Moves the ship 1 square north
 				location.y--;
+				updateObservers();
 			}
 		}
 	}
@@ -41,6 +43,7 @@ public class PlayerShip implements ShipInterface {
 			if(map[location.x + 1][location.y] == 0) {
 				//Moves the ship 1 square east
 				location.x++;
+				updateObservers();
 			}
 		}
 	}
@@ -52,6 +55,7 @@ public class PlayerShip implements ShipInterface {
 			if(map[location.x][location.y + 1] == 0) {
 				//Moves the ship 1 square south
 				location.y++;
+				updateObservers();
 			}
 		}
 	}
@@ -63,8 +67,15 @@ public class PlayerShip implements ShipInterface {
 			if(map[location.x - 1][location.y] == 0) {
 				//Moves the ship 1 square west
 				location.x--;
+				updateObservers();
 			}
 		}
+	}
+	
+	public void updateObservers() {
+		//Notifies the observers that the ship has moved
+		setChanged();
+		notifyObservers();
 	}
 	
 	public String getType() {
