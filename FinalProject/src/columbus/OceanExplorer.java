@@ -18,9 +18,16 @@ public class OceanExplorer extends Application{
 	
 	
 	
+	
+	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
+		
+		oceanMap = OceanMap.getInstance();
+		root = new AnchorPane();
+		
 		scene = new Scene(root, 800, 600);
+		
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
 		
