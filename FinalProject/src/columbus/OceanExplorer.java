@@ -109,7 +109,14 @@ public class OceanExplorer extends Application{
 					createPirate(x, y);
 				} else if(map[x][y] == 3) {
 					drawIsland(x, y, "treasure");
+				} else if(map[x][y] == 4) {
+					drawIsland(x, y, "paddle");
+				} else if(map[x][y] == 5) {
+					drawIsland(x,y, "Rocket");
+				}else if(map[x][y] == 6) {
+					drawIsland(x,y,"booze");
 				}
+				
 			}
 		}	
 	}
@@ -128,6 +135,15 @@ public class OceanExplorer extends Application{
 			break;
 		case("treasure"):
 			fileName = "/images/treasureIsland.png";
+			break;
+		case("paddle"):
+			fileName = "/images/paddle.png";
+			break;
+		case("Rocket"):
+			fileName = "/images/rocket.png";
+			break;
+		case("booze"):
+			fileName = "/images/booze.png";
 			break;
 		}
 		
@@ -185,6 +201,9 @@ public class OceanExplorer extends Application{
 		//Returns the ship image view
 		return shipImageView;
 	}
+	
+	
+	
 	
 	public void updateShips() {
 		//Updates the image view for the player ship
