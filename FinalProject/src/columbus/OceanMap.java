@@ -13,6 +13,9 @@ public class OceanMap {
 	int dimension;
 	int islandCount;
 	int pirateIslandCount;
+	int paddleCount;
+	int BoozeCount;
+	int RocketCount;
 	
 	//Creates a random object to generate island locations
 	Random rand = new Random();
@@ -22,6 +25,9 @@ public class OceanMap {
 		this.dimension = 30;
 		this.islandCount = 10;
 		this.pirateIslandCount = 2;
+		this.paddleCount = 2;
+		this.BoozeCount = 2;
+		this.RocketCount = 2;
 		
 		//Creates the 2 dimensional array with the dimensions specified
 		map = new int[dimension][dimension];
@@ -70,6 +76,45 @@ public class OceanMap {
 				currentIslands++;
 			}
 		}
+		
+		currentIslands = 0;
+		
+		while(currentIslands < paddleCount) {
+			x = rand.nextInt(dimension);
+			y = rand.nextInt(dimension);
+			
+			if(map[x][y] == 0) {
+				map[x][y] = 4;
+				
+				currentIslands++;
+			}
+		}
+		currentIslands = 0;
+		
+		while(currentIslands < RocketCount) {
+			x = rand.nextInt(dimension);
+			y = rand.nextInt(dimension);
+			
+			if(map[x][y] == 0) {
+				map[x][y] = 5;
+				
+				currentIslands++;
+			}
+		}
+		
+		currentIslands = 0;
+		
+		
+		while(currentIslands < BoozeCount) {
+			x = rand.nextInt(dimension);
+			y = rand.nextInt(dimension);
+			
+			if(map[x][y] == 0) {
+				map[x][y] = 6;
+				
+				currentIslands++;
+			}
+		}		
 	}
 	
 	public static OceanMap getInstance() {

@@ -3,16 +3,18 @@ package columbus;
 import java.awt.Point;
 import java.util.Observable;
 
-public class PlayerShip extends Observable implements ShipInterface {
+public class PlayerShip extends Observable implements ShipInterface{
 	//Creates global variables for oceanMap, map array, and location
 	OceanMap oceanMap;
 	int[][] map;
 	Point location;
+	Status status;
 	
 	public PlayerShip() {
 		//Gets an instance of the ocean map then pulls the map array from it
 		oceanMap = OceanMap.getInstance();
 		map = oceanMap.getMap();
+		status = new Status();
 		
 		//Sets the location of the ship to (1, 1) every time
 		//TODO set a random location for the ship
@@ -23,6 +25,8 @@ public class PlayerShip extends Observable implements ShipInterface {
 		//Returns the location of the ship
 		return location;
 	}
+	
+	
 
 	public void moveNorth() {
 		//Checks if the ship is not already at the top edge of the map
