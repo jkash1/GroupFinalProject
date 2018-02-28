@@ -34,6 +34,7 @@ public class OceanExplorer extends Application{
 		dimensions = oceanMap.getDimension();
 		map = oceanMap.getMap();
 		
+		//Creates a ship for the player
 		ship = new PlayerShip();
 		shipImageView = createShipImage(ship);
 		
@@ -54,6 +55,7 @@ public class OceanExplorer extends Application{
 	//TODO Load Images
 	
 	public void startSailing() {
+		//Creates a new key event handler to move the player
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent ke) {
 				switch(ke.getCode()) {
@@ -75,8 +77,7 @@ public class OceanExplorer extends Application{
 					break;
 				}
 				
-				System.out.println(String.format("Ship is at (%d, %d)", ship.getShipLocation().x, ship.getShipLocation().y));
-				
+				//Updates the locations of all ships
 				updateShips();
 			}
 		});
@@ -100,16 +101,14 @@ public class OceanExplorer extends Application{
 				root.getChildren().add(rect);
 				
 				//Draws an island of the desired type
-				if(map[x][y] == 1)
+				if(map[x][y] == 1) {
 					drawIsland(x, y, "normal");
-				else if(map[x][y] == 2)
+				} else if(map[x][y] == 2) {
 					drawIsland(x, y, "pirate");
+					createPirate(x, y);
+				}
 			}
 		}	
-	}
-	
-	public void drawShip(String type) {
-		
 	}
 	
 	public void drawIsland(int x, int y, String type) {
@@ -139,7 +138,16 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void createPirate(int x, int y) {
+		//Creates a new ship and image view for the new pirate
+		ShipInterface pirateShip = new PirateShip(x, y);
+		ImageView pirateShipImageView = createShipImage(pirateShip);
 		
+		//Adds the ships image view to the pane
+		root.getChildren().add(pirateShipImageView);
+		
+		//Adds both the ship and the image view to their lists
+		pirates.add(pirateShip);
+		pirateImages.add(pirateShipImageView);
 	}
 	
 	public ImageView createShipImage(ShipInterface ship) {
@@ -170,8 +178,11 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void updateShips() {
+		//Updates the image view for the player ship
 		shipImageView.setX(ship.getShipLocation().x * scale);
 		shipImageView.setY(ship.getShipLocation().y * scale);
+		
+		//TODO Update the image views for every pirate ship
 	}
 	
 	/*
