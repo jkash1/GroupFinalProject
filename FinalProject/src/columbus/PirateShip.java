@@ -16,7 +16,7 @@ public class PirateShip implements ShipInterface, Observer {
 		map = oceanMap.getMap();
 
 		//Sets the location of the ship
-		location.setLocation(x, y);
+		location = new Point(x, y);
 	}
 	
 	public Point getShipLocation() {
