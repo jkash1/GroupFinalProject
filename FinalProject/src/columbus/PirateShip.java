@@ -31,22 +31,34 @@ public class PirateShip implements ShipInterface, Observer {
 	
 	public void moveNorth() {
 		//Move 1 square up
-		location.y--;
+		if(map[location.x][location.y - 1] == 0) {
+			//Moves the ship 1 square north
+			location.y--;
+		}
 	}
 
 	public void moveEast() {
 		//Move 1 square right
-		location.x++;
+		if(map[location.x+1][location.y] == 0) {
+			//Moves the ship 1 square north
+			location.x++;
+		}
 	}
 
 	public void moveSouth() {
 		//Move 1 square down
-		location.y++;
+		if(map[location.x][location.y + 1] == 0) {
+			//Moves the ship 1 square north
+			location.y++;
+		}
 	}
 
 	public void moveWest() {
 		//Move 1 square left
-		location.x--;
+		if(map[location.x-1][location.y] == 0) {
+			//Moves the ship 1 square north
+			location.x--;
+		}
 	}
 	
 	public String getType() {
