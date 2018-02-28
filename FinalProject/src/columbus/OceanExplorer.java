@@ -58,15 +58,19 @@ public class OceanExplorer extends Application{
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent ke) {
 				switch(ke.getCode()) {
+				case D:
 				case RIGHT:
 					ship.moveEast();
 					break;
+				case A:	
 				case LEFT:
 					ship.moveWest();
 					break;
+				case W:
 				case UP:
 					ship.moveNorth();
 					break;
+				case S:	
 				case DOWN:
 					ship.moveSouth();
 					break;
