@@ -19,7 +19,7 @@ public class OceanMap {
 	
 	private OceanMap() {
 		//Sets the dimensions and island counts
-		this.dimension = 10;
+		this.dimension = 30;
 		this.islandCount = 10;
 		this.pirateIslandCount = 2;
 		
@@ -76,5 +76,9 @@ public class OceanMap {
 	public int[][] getMap() {
 		//Returns the 2 dimensional map array
 		return map;
+	}
+	
+	public int getDimension() {
+		return dimension;
 	}
 }

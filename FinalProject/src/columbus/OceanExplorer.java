@@ -1,5 +1,7 @@
 package columbus;
 
+import java.util.LinkedList;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -13,28 +15,27 @@ import javafx.stage.Stage;
 
 public class OceanExplorer extends Application{
 
-	public final int scale = 40;
-	final int dimensions = 40;
+	int scale = 30;
+	int dimensions;
 	Image shipImage, pirateImage, IslandImage;
 	ImageView shipImageView;
 	OceanMap oceanMap;
 	Scene scene;
 	AnchorPane root;
-	ShipInterface ship;
-	
-	
+	ShipInterface ship;	
+	LinkedList<ShipInterface> pirates = new LinkedList<ShipInterface>();
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
 		
 		oceanMap = OceanMap.getInstance();
-		root = new AnchorPane();
+		dimensions = oceanMap.getDimension();
 		
-		scene = new Scene(root, 800, 600);
+		root = new AnchorPane();
+		scene = new Scene(root, 900, 900);
 		
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
-		
 		oceanStage.show();
 		drawMap();
 		
