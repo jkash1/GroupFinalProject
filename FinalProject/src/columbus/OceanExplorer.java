@@ -28,22 +28,22 @@ public class OceanExplorer extends Application{
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
-		
+		//Gets an instance of the ocean map, gets its dimensions, and gets the map from it
 		oceanMap = OceanMap.getInstance();
 		dimensions = oceanMap.getDimension();
 		map = oceanMap.getMap();
 		
+		//Creates a pane, scene, and draws the map
 		root = new AnchorPane();
 		scene = new Scene(root, 900, 900);
 		drawMap();
 		
+		//Sets the scene, adds a title to the window, and shows it
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
 		oceanStage.show();
 		
-		
-	//	startSailing();
-		
+		//startSailing();
 	}
 	//TODO Load Images
 	
@@ -51,13 +51,17 @@ public class OceanExplorer extends Application{
 	 * Draws the Grid
 	 */
 	public void drawMap() {
+		//Iterates through every square on the map
 		for(int x = 0; x < dimensions; x++) {
 			for(int y = 0; y < dimensions; y++) {
+				//Creates a rectangle for a square on the map
 				Rectangle rect = new Rectangle(x * scale, y * scale, scale, scale);
 				
+				//Sets the rectangle to be turquoise with a pale turquoise stroke
 				rect.setStroke(Color.TURQUOISE);
 				rect.setFill(Color.PALETURQUOISE);
 				
+				//Adds a blue square to the pane
 				root.getChildren().add(rect);
 				
 				//Draws an island of the desired type
