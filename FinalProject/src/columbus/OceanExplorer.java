@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class OceanExplorer extends Application{
 
-	int scale = 30;
+	int scale = 20;
 	int dimensions;
 	Image shipImage, pirateImage, IslandImage;
 	ImageView shipImageView;
@@ -39,7 +39,7 @@ public class OceanExplorer extends Application{
 		
 		//Creates a pane, scene, and draws the map
 		root = new AnchorPane();
-		scene = new Scene(root, 900, 900);
+		scene = new Scene(root, 600, 600);
 		drawMap();
 		root.getChildren().add(shipImageView);
 		
