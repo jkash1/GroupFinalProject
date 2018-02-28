@@ -20,6 +20,7 @@ public class OceanExplorer extends Application{
 	Image shipImage, pirateImage, IslandImage;
 	ImageView shipImageView;
 	OceanMap oceanMap;
+	int[][] map;
 	Scene scene;
 	AnchorPane root;
 	ShipInterface ship;	
@@ -30,14 +31,16 @@ public class OceanExplorer extends Application{
 		
 		oceanMap = OceanMap.getInstance();
 		dimensions = oceanMap.getDimension();
+		map = oceanMap.getMap();
 		
 		root = new AnchorPane();
 		scene = new Scene(root, 900, 900);
+		drawMap();
 		
 		oceanStage.setScene(scene);
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
 		oceanStage.show();
-		drawMap();
+		
 		
 	//	startSailing();
 		
@@ -50,16 +53,47 @@ public class OceanExplorer extends Application{
 	public void drawMap() {
 		for(int x = 0; x < dimensions; x++) {
 			for(int y = 0; y < dimensions; y++) {
-				Rectangle rect = new Rectangle(x*scale, y*scale,scale,scale);
+				Rectangle rect = new Rectangle(x * scale, y * scale, scale, scale);
+				
 				rect.setStroke(Color.TURQUOISE);
 				rect.setFill(Color.PALETURQUOISE);
+				
 				root.getChildren().add(rect);
-			
+				
+				//Draws an island of the desired type
+				if(map[x][y] == 1)
+					drawIsland(x, y, "normal");
+				else if(map[x][y] == 2)
+					drawIsland(x, y, "pirate");
 			}
 		}	
 	}
 	
-	
+	public void drawIsland(int x, int y, String type) {
+		//Creates a string called fileName to store the name of the island image
+		String fileName = null;
+		
+		//Decides which island image to use based on the type variable
+		switch(type) {
+		case("normal"):
+			fileName = "/images/island.jpg";
+			break;
+		case("pirate"):
+			fileName = "/images/pirateIsland.png";
+			break;
+		}
+		
+		//Creates an Image and ImageView based on the file name
+		Image island = new Image(fileName, scale, scale, false, false);
+		ImageView islandImageView = new ImageView(island);
+		
+		//Sets the image view to the location passed in
+		islandImageView.setX(x * scale);
+		islandImageView.setY(y * scale);
+		
+		//Adds the image view to the pane
+		root.getChildren().add(islandImageView);
+	}
 	
 	
 	/*

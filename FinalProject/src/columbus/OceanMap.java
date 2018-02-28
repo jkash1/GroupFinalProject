@@ -46,7 +46,7 @@ public class OceanMap {
 		currentIslands = 0;
 
 		//Creates the amount of pirate islands specified in pirateIslandCount and makes sure they aren't on the same spot as another
-		while(currentIslands > pirateIslandCount) {
+		while(currentIslands < pirateIslandCount) {
 			x = rand.nextInt(dimension);
 			y = rand.nextInt(dimension);
 			
