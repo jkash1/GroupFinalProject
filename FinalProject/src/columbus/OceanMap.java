@@ -56,6 +56,20 @@ public class OceanMap {
 				currentIslands++;
 			}
 		}
+		
+		currentIslands = 0;
+		
+		//Creates a single treasure island at a random square within 3 squares of the right edge of the map
+		while(currentIslands < 1) {
+			x = rand.nextInt(3) + dimension - 3;
+			y = rand.nextInt(dimension);
+			
+			if(map[x][y] == 0) {
+				map[x][y] = 3;
+				
+				currentIslands++;
+			}
+		}
 	}
 	
 	public static OceanMap getInstance() {

@@ -106,6 +106,8 @@ public class OceanExplorer extends Application{
 				} else if(map[x][y] == 2) {
 					drawIsland(x, y, "pirate");
 					createPirate(x, y);
+				} else if(map[x][y] == 3) {
+					drawIsland(x, y, "treasure");
 				}
 			}
 		}	
@@ -122,6 +124,9 @@ public class OceanExplorer extends Application{
 			break;
 		case("pirate"):
 			fileName = "/images/pirateIsland.png";
+			break;
+		case("treasure"):
+			fileName = "/images/treasureIsland.png";
 			break;
 		}
 		
