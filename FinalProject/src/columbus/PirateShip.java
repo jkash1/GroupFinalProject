@@ -19,6 +19,10 @@ public class PirateShip implements ShipInterface, Observer {
 		location.setLocation(x, y);
 	}
 	
+	public Point getShipLocation() {
+		return location;
+	}
+	
 	public void moveNorth() {
 		location.y--;
 	}
@@ -33,6 +37,10 @@ public class PirateShip implements ShipInterface, Observer {
 
 	public void moveWest() {
 		location.x--;
+	}
+	
+	public String getType() {
+		return "pirate";
 	}
 
 	public void update(Observable ship, Object arg1) {
