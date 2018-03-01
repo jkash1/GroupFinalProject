@@ -3,7 +3,6 @@ package columbus;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedList;
-
 import sun.misc.Queue;
 
 public class SmartPursuit implements PursuitStrategy {
@@ -12,18 +11,22 @@ public class SmartPursuit implements PursuitStrategy {
 	int[][] map;
 	
 	public SmartPursuit() {
+		//Gets an instance of the ocean map and grabs the map from it
 		oceanMap = OceanMap.getInstance();
 		map = oceanMap.getMap();
 	}
 	
 	String smartPersuit(Point start, Point end) {
+		//Creates a hashmap to store best moves per point, and queue to check each point, and a visited array
 		HashMap<Point, String> firstMove = new HashMap<Point, String>();
 		Queue<Point> queue = new Queue<Point>();
-		boolean[][] visited = new boolean[oceanMap.dimension][oceanMap.dimension];
+		boolean[][] visited = new boolean[oceanMap.getDimension()][oceanMap.getDimension()];
 		
+		//Sets the initial point as visited
 		visited[start.x][start.y] = true;
 		
 		for(Point neighbor : getNeighbors(start, firstMove)) {
+			//Adds the neighbors of the initial point to the queue and sets them to visited
 			queue.enqueue(neighbor);
 			visited[neighbor.x][neighbor.y] = true;
 		}
@@ -31,17 +34,17 @@ public class SmartPursuit implements PursuitStrategy {
 		while(!queue.isEmpty()) {
 			Point point = null;
 			
+			//Tries to take a point from the queue
 			try {
 				point = queue.dequeue();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			visited[point.x][point.y] = true;
-			
+			//If the current point is the end point, break the loop
 			if(point.equals(end)) break;
 			
+			//Adds each valid neighbor of the given point to the queue and sets it to visitied
 			for(Point neighbor : getNeighbors(point, firstMove)) {
 				if(visited[neighbor.x][neighbor.y] == false) {
 					queue.enqueue(neighbor);
@@ -54,15 +57,19 @@ public class SmartPursuit implements PursuitStrategy {
 	}
 	
 	public LinkedList<Point> getNeighbors(Point point, HashMap<Point, String> firstMove) {
+		//Creates a linked list of points for each neighbor of the point passed in
 		LinkedList<Point> neighbors = new LinkedList<Point>();
 		
+		//Creates points for the square above, below, left, and right of the point
 		Point up, down, left, right;
 		
+		//Assigns these points to actual values
 		up = new Point(point.x, point.y - 1);
 		down = new Point(point.x, point.y + 1);
 		left = new Point(point.x - 1, point.y);
 		right = new Point(point.x + 1, point.y);
 		
+		//Checks if the left point is valid, and adds it if it is
 		if(checkValidSquare(left)) {
 			neighbors.add(left);
 
@@ -71,7 +78,8 @@ public class SmartPursuit implements PursuitStrategy {
 			else
 				firstMove.put(left, firstMove.get(point));
 		}
-		
+
+		//Checks if the right point is valid, and adds it if it is
 		if(checkValidSquare(right)) {
 			neighbors.add(right);
 
@@ -81,6 +89,7 @@ public class SmartPursuit implements PursuitStrategy {
 				firstMove.put(right, firstMove.get(point));
 		}
 
+		//Checks if the above point is valid, and adds it if it is
 		if(checkValidSquare(up)) {
 			neighbors.add(up);
 
@@ -89,7 +98,8 @@ public class SmartPursuit implements PursuitStrategy {
 			else
 				firstMove.put(up, firstMove.get(point));
 		}
-		
+
+		//Checks if the below point is valid, and adds it if it is
 		if(checkValidSquare(down)) {
 			neighbors.add(down);
 
@@ -98,24 +108,30 @@ public class SmartPursuit implements PursuitStrategy {
 			else
 				firstMove.put(down, firstMove.get(point));
 		}
-	
+		
+		//Returns the list of all valid neighbors
 		return neighbors;
 	}
 	
 	public boolean checkValidSquare(Point point) {
+		//Gets the dimensions of the map
 		int dimension = oceanMap.getDimension() - 1;
 		
+		//Returns false if either of the dimensions are less than zero or greater than the maps dimensions
 		if(point.x > dimension || point.x < 0) return false;
 		if(point.y > dimension || point.y < 0) return false;
 		
+		//Returns false if the square of the map is not ocean
 		if(map[point.x][point.y] != 0) return false;
 		
 		return true;
 	}
 
 	public String decideMove(Point location, Point otherLocation) {
+		//Finds the best move using the smart pursuit strategy
 		String move = smartPersuit(location, otherLocation);
 		
+		//Returns the best move found
 		return move;	
 	}
 }
