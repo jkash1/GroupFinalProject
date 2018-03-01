@@ -25,6 +25,7 @@ public class PirateShip implements ShipInterface, Observer {
 	}
 	
 	public void setStrategy(PursuitStrategy strategy) {
+		//Sets the current pursuit strategy a new one passed in
 		pursuitStrategy = strategy;
 	}
 	
