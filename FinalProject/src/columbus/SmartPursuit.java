@@ -9,9 +9,11 @@ import sun.misc.Queue;
 public class SmartPursuit implements PursuitStrategy {
 	
 	OceanMap oceanMap;
+	int[][] map;
 	
 	public SmartPursuit() {
 		oceanMap = OceanMap.getInstance();
+		map = oceanMap.getMap();
 	}
 	
 	String smartPersuit(Point start, Point end) {
@@ -28,6 +30,7 @@ public class SmartPursuit implements PursuitStrategy {
 		
 		while(!queue.isEmpty()) {
 			Point point = null;
+			
 			try {
 				point = queue.dequeue();
 			} catch (InterruptedException e) {
@@ -54,48 +57,61 @@ public class SmartPursuit implements PursuitStrategy {
 		int[][] map = oceanMap.getMap();
 		LinkedList<Point> neighbors = new LinkedList<Point>();
 		
-		if(point.x > 0) {
-			if(map[point.x - 1][point.y] == 0) {
-				neighbors.add(new Point(point.x - 1, point.y));
+		Point up, down, left, right;
+		
+		up = new Point(point.x, point.y - 1);
+		down = new Point(point.x, point.y + 1);
+		left = new Point(point.x - 1, point.y);
+		right = new Point(point.x + 1, point.y);
+		
+		if(checkValidSquare(left)) {
+			neighbors.add(left);
 
-				if(firstMove.get(point) == null)
-					firstMove.put(new Point(point.x - 1, point.y), "LEFT");
-				else
-					firstMove.put(new Point(point.x - 1, point.y), firstMove.get(point));
-			}
-		}
-		if(point.x < oceanMap.dimension - 1) {
-			if(map[point.x + 1][point.y] == 0) {
-				neighbors.add(new Point(point.x + 1, point.y));
-
-				if(firstMove.get(point) == null)
-					firstMove.put(new Point(point.x + 1, point.y), "RIGHT");
-				else
-					firstMove.put(new Point(point.x + 1, point.y), firstMove.get(point));
-			}
-		}
-		if(point.y > 0) {
-			if(map[point.x][point.y - 1] == 0) {
-				neighbors.add(new Point(point.x, point.y - 1));
-
-				if(firstMove.get(point) == null)
-					firstMove.put(new Point(point.x, point.y - 1), "UP");
-				else
-					firstMove.put(new Point(point.x, point.y - 1), firstMove.get(point));
-			}
-		}
-		if(point.y < oceanMap.dimension - 1) {
-			if(map[point.x][point.y + 1] == 0) {
-				neighbors.add(new Point(point.x, point.y + 1));
-
-				if(firstMove.get(point) == null)
-					firstMove.put(new Point(point.x, point.y + 1), "DOWN");
-				else
-					firstMove.put(new Point(point.x, point.y + 1), firstMove.get(point));
-			}
+			if(firstMove.get(point) == null)
+				firstMove.put(left, "LEFT");
+			else
+				firstMove.put(left, firstMove.get(point));
 		}
 		
+		if(checkValidSquare(right)) {
+			neighbors.add(right);
+
+			if(firstMove.get(point) == null)
+				firstMove.put(right, "RIGHT");
+			else
+				firstMove.put(right, firstMove.get(point));
+		}
+
+		if(checkValidSquare(up)) {
+			neighbors.add(up);
+
+			if(firstMove.get(point) == null)
+				firstMove.put(up, "UP");
+			else
+				firstMove.put(up, firstMove.get(point));
+		}
+		
+		if(checkValidSquare(down)) {
+			neighbors.add(down);
+
+			if(firstMove.get(point) == null)
+				firstMove.put(down, "DOWN");
+			else
+				firstMove.put(down, firstMove.get(point));
+		}
+	
 		return neighbors;
+	}
+	
+	public boolean checkValidSquare(Point point) {
+		int dimension = oceanMap.getDimension() - 1;
+		
+		if(point.x > dimension || point.x < 0) return false;
+		if(point.y > dimension || point.y < 0) return false;
+		
+		if(map[point.x][point.y] != 0) return false;
+		
+		return true;
 	}
 
 	public String decideMove(Point location, Point otherLocation) {
