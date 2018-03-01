@@ -23,7 +23,7 @@ public class OceanMap {
 	private OceanMap() {
 		//Sets the dimensions and island counts
 		this.dimension = 30;
-		this.islandCount = 10;
+		this.islandCount = 30;
 		this.pirateIslandCount = 2;
 		this.paddleCount = 2;
 		this.BoozeCount = 2;
