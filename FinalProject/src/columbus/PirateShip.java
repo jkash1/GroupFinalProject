@@ -23,6 +23,9 @@ public class PirateShip implements ShipInterface, Observer {
 		//Creates a persuit strategy for the pirate ship
 		persuitStrategy = new SimplePersuit();
 	}
+	public void setStrategy(PersuitStrategy strategy) {
+		persuitStrategy =  strategy;
+	}
 	
 	public Point getShipLocation() {
 		//Returns the point that the ship is located at
