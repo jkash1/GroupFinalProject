@@ -6,11 +6,11 @@ import java.util.LinkedList;
 
 import sun.misc.Queue;
 
-public class SmartPersuit implements PersuitStrategy {
+public class SmartPursuit implements PursuitStrategy {
 	
 	OceanMap oceanMap;
 	
-	public SmartPersuit() {
+	public SmartPursuit() {
 		oceanMap = OceanMap.getInstance();
 	}
 	

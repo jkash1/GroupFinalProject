@@ -10,7 +10,7 @@ public class PirateShip implements ShipInterface, Observer {
 	int[][] map;
 	Point location;
 	
-	PersuitStrategy persuitStrategy;
+	PursuitStrategy pursuitStrategy;
 	
 	public PirateShip(int x, int y) {
 		//Gets an instance of the ocean map then pulls the map array from it
@@ -20,12 +20,12 @@ public class PirateShip implements ShipInterface, Observer {
 		//Sets the location of the ship
 		location = new Point(x, y);
 		
-		//Creates a persuit strategy for the pirate ship
-		persuitStrategy = new SmartPersuit();
+		//Creates a pursuit strategy for the pirate ship
+		pursuitStrategy = new SmartPursuit();
 	}
 	
-	public void setStrategy(PersuitStrategy strategy) {
-		persuitStrategy = strategy;
+	public void setStrategy(PursuitStrategy strategy) {
+		pursuitStrategy = strategy;
 	}
 	
 	public Point getShipLocation() {
@@ -82,8 +82,8 @@ public class PirateShip implements ShipInterface, Observer {
 	}
 
 	public void update(Observable ship, Object arg1) {
-		//Gets the recommended move from the persuit strategy
-		String move = persuitStrategy.decideMove(location, ((ShipInterface) ship).getShipLocation());
+		//Gets the recommended move from the pursuit strategy
+		String move = pursuitStrategy.decideMove(location, ((ShipInterface) ship).getShipLocation());
 		
 		//Moves based on the recommended move
 		switch(move) {
