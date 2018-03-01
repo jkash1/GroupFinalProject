@@ -21,7 +21,7 @@ public class PirateShip implements ShipInterface, Observer {
 		location = new Point(x, y);
 		
 		//Creates a persuit strategy for the pirate ship
-		persuitStrategy = new SimplePersuit();
+		persuitStrategy = new SmartPersuit();
 	}
 	
 	public void setStrategy(PersuitStrategy strategy) {
@@ -34,23 +34,47 @@ public class PirateShip implements ShipInterface, Observer {
 	}
 	
 	public void moveNorth() {
-		//Move 1 square up
-		location.y--;
+		//Checks if the ship is not already at the top edge of the map
+		if(location.y > 0) {
+			//Checks if the space above is a water square
+			if(map[location.x][location.y - 1] == 0) {
+				//Moves the ship 1 square north
+				location.y--;
+			}
+		}
 	}
 
 	public void moveEast() {
-		//Move 1 square right
-		location.x++;
+		//Checks if the ship is not already at the right edge of the map
+		if(location.x < oceanMap.dimension - 1) {
+			//Checks if the space to the right is a water square
+			if(map[location.x + 1][location.y] == 0) {
+				//Moves the ship 1 square east
+				location.x++;
+			}
+		}
 	}
 
 	public void moveSouth() {
-		//Move 1 square down
-		location.y++;
+		//Checks if the ship is not already at the bottom edge of the map
+		if(location.y < oceanMap.dimension - 1) {
+			//Checks if the space below is a water square
+			if(map[location.x][location.y + 1] == 0) {
+				//Moves the ship 1 square south
+				location.y++;
+			}
+		}
 	}
 
 	public void moveWest() {
-		//Move 1 square left
-		location.x--;
+		//Checks if the ship is not already at the left edge of the map
+		if(location.x > 0) {
+			//Checks if the space to the left is a water square
+			if(map[location.x - 1][location.y] == 0) {
+				//Moves the ship 1 square west
+				location.x--;
+			}
+		}
 	}
 	
 	public String getType() {
