@@ -2,7 +2,7 @@ package columbus;
 
 import java.awt.Point;
 
-public class SimplePersuit implements PersuitStrategy {
+public class SimplePursuit implements PursuitStrategy {
 	
 	String simplePersuit(Point location, Point otherLocation) {
 		String move = null;
@@ -23,7 +23,7 @@ public class SimplePersuit implements PersuitStrategy {
 	}
 		
 	public String decideMove(Point location, Point otherLocation) {
-		//Gets the move from the persuit strategy
+		//Gets the move from the pursuit strategy
 		return simplePersuit(location, otherLocation);
 	}
 }

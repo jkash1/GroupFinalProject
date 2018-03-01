@@ -10,7 +10,7 @@ public class PirateShip implements ShipInterface, Observer {
 	int[][] map;
 	Point location;
 	
-	PersuitStrategy persuitStrategy;
+	PursuitStrategy pursuitStrategy;
 	
 	public PirateShip(int x, int y) {
 		//Gets an instance of the ocean map then pulls the map array from it
@@ -20,11 +20,13 @@ public class PirateShip implements ShipInterface, Observer {
 		//Sets the location of the ship
 		location = new Point(x, y);
 		
-		//Creates a persuit strategy for the pirate ship
-		persuitStrategy = new SimplePersuit();
+		//Creates a pursuit strategy for the pirate ship
+		pursuitStrategy = new SmartPursuit();
 	}
-	public void setStrategy(PersuitStrategy strategy) {
-		persuitStrategy =  strategy;
+	
+	public void setStrategy(PursuitStrategy strategy) {
+		//Sets the current pursuit strategy a new one passed in
+		pursuitStrategy = strategy;
 	}
 	
 	public Point getShipLocation() {
@@ -33,34 +35,46 @@ public class PirateShip implements ShipInterface, Observer {
 	}
 	
 	public void moveNorth() {
-		//Move 1 square up
-		if(map[location.x][location.y - 1] == 0) {
-			//Moves the ship 1 square north
-			location.y--;
+		//Checks if the ship is not already at the top edge of the map
+		if(location.y > 0) {
+			//Checks if the space above is a water square
+			if(map[location.x][location.y - 1] != 1 || map[location.x][location.y - 1] != 2) {
+				//Moves the ship 1 square north
+				location.y--;
+			}
 		}
 	}
 
 	public void moveEast() {
-		//Move 1 square right
-		if(map[location.x+1][location.y] == 0) {
-			//Moves the ship 1 square north
-			location.x++;
+		//Checks if the ship is not already at the right edge of the map
+		if(location.x < oceanMap.dimension - 1) {
+			//Checks if the space to the right is a water square
+			if(map[location.x + 1][location.y] == 0) {
+				//Moves the ship 1 square east
+				location.x++;
+			}
 		}
 	}
 
 	public void moveSouth() {
-		//Move 1 square down
-		if(map[location.x][location.y + 1] == 0) {
-			//Moves the ship 1 square north
-			location.y++;
+		//Checks if the ship is not already at the bottom edge of the map
+		if(location.y < oceanMap.dimension - 1) {
+			//Checks if the space below is a water square
+			if(map[location.x][location.y + 1] == 0) {
+				//Moves the ship 1 square south
+				location.y++;
+			}
 		}
 	}
 
 	public void moveWest() {
-		//Move 1 square left
-		if(map[location.x-1][location.y] == 0) {
-			//Moves the ship 1 square north
-			location.x--;
+		//Checks if the ship is not already at the left edge of the map
+		if(location.x > 0) {
+			//Checks if the space to the left is a water square
+			if(map[location.x - 1][location.y] == 0) {
+				//Moves the ship 1 square west
+				location.x--;
+			}
 		}
 	}
 	
@@ -69,8 +83,8 @@ public class PirateShip implements ShipInterface, Observer {
 	}
 
 	public void update(Observable ship, Object arg1) {
-		//Gets the recommended move from the persuit strategy
-		String move = persuitStrategy.decideMove(location, ((ShipInterface) ship).getShipLocation());
+		//Gets the recommended move from the pursuit strategy
+		String move = pursuitStrategy.decideMove(location, ((ShipInterface) ship).getShipLocation());
 		
 		//Moves based on the recommended move
 		switch(move) {

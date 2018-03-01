@@ -23,7 +23,7 @@ public class OceanMap {
 	private OceanMap() {
 		//Sets the dimensions and island counts
 		this.dimension = 30;
-		this.islandCount = 10;
+		this.islandCount = 30;
 		this.pirateIslandCount = 2;
 		this.paddleCount = 2;
 		this.boozeCount = 2;
@@ -39,85 +39,7 @@ public class OceanMap {
 		spawnIslands("paddle", paddleCount);
 		spawnIslands("rocket", rocketCount);
 		spawnIslands("booze", boozeCount);
-		
-		//Creates the amount of islands specified in islandCount and makes sure they aren't on the same spot as another
-		/*while(currentIslands < islandCount) {
-			x = rand.nextInt(dimension);
-			y = rand.nextInt(dimension);
 			
-			if(map[x][y] == 0) {
-				map[x][y] = 1;
-				
-				currentIslands++;
-			}
-		}
-		
-		currentIslands = 0;
-
-		//Creates the amount of pirate islands specified in pirateIslandCount and makes sure they aren't on the same spot as another
-		while(currentIslands < pirateIslandCount) {
-			x = rand.nextInt(dimension);
-			y = rand.nextInt(dimension);
-			
-			if(map[x][y] == 0) {
-				map[x][y] = 2;
-				
-				currentIslands++;
-			}
-		}
-		
-		currentIslands = 0;
-		
-		//Creates a single treasure island at a random square within 3 squares of the right edge of the map
-		while(currentIslands < 1) {
-			x = rand.nextInt(3) + dimension - 3;
-			y = rand.nextInt(dimension);
-			
-			if(map[x][y] == 0) {
-				map[x][y] = 3;
-				
-				currentIslands++;
-			}
-		}
-		
-		currentIslands = 0;
-		
-		while(currentIslands < paddleCount) {
-			x = rand.nextInt(dimension);
-			y = rand.nextInt(dimension);
-			
-			if(map[x][y] == 0) {
-				map[x][y] = 4;
-				
-				currentIslands++;
-			}
-		}
-		currentIslands = 0;
-		
-		while(currentIslands < rocketCount) {
-			x = rand.nextInt(dimension);
-			y = rand.nextInt(dimension);
-			
-			if(map[x][y] == 0) {
-				map[x][y] = 5;
-				
-				currentIslands++;
-			}
-		}
-		
-		currentIslands = 0;
-		
-		
-		while(currentIslands < boozeCount) {
-			x = rand.nextInt(dimension);
-			y = rand.nextInt(dimension);
-			
-			if(map[x][y] == 0) {
-				map[x][y] = 6;
-				
-				currentIslands++;
-			}
-		}*/		
 	}
 	
 	public void spawnIslands(String type, int Count) {

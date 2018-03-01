@@ -2,6 +2,6 @@ package columbus;
 
 import java.awt.Point;
 
-public interface PersuitStrategy {
+public interface PursuitStrategy {
 	public String decideMove(Point location, Point otherLocation);
 }
