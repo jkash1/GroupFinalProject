@@ -39,7 +39,7 @@ public class OceanExplorer extends Application{
 		
 		//Creates a pane, scene, and draws the map
 		root = new AnchorPane();
-		scene = new Scene(root, 600, 600);
+		scene = new Scene(root, scale * dimensions, scale * dimensions);
 		drawMap();
 		root.getChildren().add(shipImageView);
 		
@@ -51,7 +51,6 @@ public class OceanExplorer extends Application{
 		//Start listening for user input and moving the boat
 		startSailing();
 	}
-	//TODO Load Images
 	
 	public void startSailing() {
 		//Creates a new key event handler to move the player
