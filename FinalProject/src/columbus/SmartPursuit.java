@@ -54,7 +54,6 @@ public class SmartPursuit implements PursuitStrategy {
 	}
 	
 	public LinkedList<Point> getNeighbors(Point point, HashMap<Point, String> firstMove) {
-		int[][] map = oceanMap.getMap();
 		LinkedList<Point> neighbors = new LinkedList<Point>();
 		
 		Point up, down, left, right;
