@@ -21,7 +21,7 @@ public class PirateShip implements ShipInterface, Observer {
 		location = new Point(x, y);
 		
 		//Creates a pursuit strategy for the pirate ship
-		pursuitStrategy = new SmartPursuit();
+		pursuitStrategy = new SimplePursuit();
 	}
 	
 	public void setStrategy(PursuitStrategy strategy) {
@@ -38,7 +38,7 @@ public class PirateShip implements ShipInterface, Observer {
 		//Checks if the ship is not already at the top edge of the map
 		if(location.y > 0) {
 			//Checks if the space above is a water square
-			if(map[location.x][location.y - 1] != 1 || map[location.x][location.y - 1] != 2) {
+			if(map[location.x][location.y - 1] == 0) {
 				//Moves the ship 1 square north
 				location.y--;
 			}
