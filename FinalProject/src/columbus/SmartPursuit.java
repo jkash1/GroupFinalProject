@@ -3,7 +3,7 @@ package columbus;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedList;
-import sun.misc.Queue;
+import java.util.Queue;
 
 public class SmartPursuit implements PursuitStrategy {
 	
@@ -19,7 +19,7 @@ public class SmartPursuit implements PursuitStrategy {
 	String smartPersuit(Point start, Point end) {
 		//Creates a hashmap to store best moves per point, and queue to check each point, and a visited array
 		HashMap<Point, String> firstMove = new HashMap<Point, String>();
-		Queue<Point> queue = new Queue<Point>();
+		Queue<Point> queue = new LinkedList<Point>();
 		boolean[][] visited = new boolean[oceanMap.getDimension()][oceanMap.getDimension()];
 		
 		//Sets the initial point as visited
@@ -27,7 +27,7 @@ public class SmartPursuit implements PursuitStrategy {
 		
 		for(Point neighbor : getNeighbors(start, firstMove)) {
 			//Adds the neighbors of the initial point to the queue and sets them to visited
-			queue.enqueue(neighbor);
+			queue.add(neighbor);
 			visited[neighbor.x][neighbor.y] = true;
 		}
 		
@@ -35,11 +35,7 @@ public class SmartPursuit implements PursuitStrategy {
 			Point point = null;
 			
 			//Tries to take a point from the queue
-			try {
-				point = queue.dequeue();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			point = queue.remove();
 			
 			//If the current point is the end point, break the loop
 			if(point.equals(end)) break;
@@ -47,7 +43,7 @@ public class SmartPursuit implements PursuitStrategy {
 			//Adds each valid neighbor of the given point to the queue and sets it to visitied
 			for(Point neighbor : getNeighbors(point, firstMove)) {
 				if(visited[neighbor.x][neighbor.y] == false) {
-					queue.enqueue(neighbor);
+					queue.add(neighbor);
 					visited[neighbor.x][neighbor.y] = true;
 				}
 			}
