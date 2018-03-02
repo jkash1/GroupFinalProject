@@ -69,6 +69,36 @@ public class SmartPursuit implements PursuitStrategy {
 		left = new Point(point.x - 1, point.y);
 		right = new Point(point.x + 1, point.y);
 		
+		//Checks if the above point is valid, and adds it if it is
+		if(checkValidSquare(up)) {
+			neighbors.add(up);
+
+			if(firstMove.get(point) == null)
+				firstMove.put(up, "UP");
+			else
+				firstMove.put(up, firstMove.get(point));
+		}
+		
+		//Checks if the right point is valid, and adds it if it is
+		if(checkValidSquare(right)) {
+			neighbors.add(right);
+
+			if(firstMove.get(point) == null)
+				firstMove.put(right, "RIGHT");
+			else
+				firstMove.put(right, firstMove.get(point));
+		}
+		
+		//Checks if the below point is valid, and adds it if it is
+		if(checkValidSquare(down)) {
+			neighbors.add(down);
+
+			if(firstMove.get(point) == null)
+				firstMove.put(down, "DOWN");
+			else
+				firstMove.put(down, firstMove.get(point));
+		}
+		
 		//Checks if the left point is valid, and adds it if it is
 		if(checkValidSquare(left)) {
 			neighbors.add(left);
@@ -79,35 +109,9 @@ public class SmartPursuit implements PursuitStrategy {
 				firstMove.put(left, firstMove.get(point));
 		}
 
-		//Checks if the right point is valid, and adds it if it is
-		if(checkValidSquare(right)) {
-			neighbors.add(right);
+		
 
-			if(firstMove.get(point) == null)
-				firstMove.put(right, "RIGHT");
-			else
-				firstMove.put(right, firstMove.get(point));
-		}
-
-		//Checks if the above point is valid, and adds it if it is
-		if(checkValidSquare(up)) {
-			neighbors.add(up);
-
-			if(firstMove.get(point) == null)
-				firstMove.put(up, "UP");
-			else
-				firstMove.put(up, firstMove.get(point));
-		}
-
-		//Checks if the below point is valid, and adds it if it is
-		if(checkValidSquare(down)) {
-			neighbors.add(down);
-
-			if(firstMove.get(point) == null)
-				firstMove.put(down, "DOWN");
-			else
-				firstMove.put(down, firstMove.get(point));
-		}
+		
 		
 		//Returns the list of all valid neighbors
 		return neighbors;
