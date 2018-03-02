@@ -53,6 +53,7 @@ public class SmartPursuit implements PursuitStrategy {
 			}
 		}
 		
+		//Returns the first move the ship should make to get to the player
 		return firstMove.get(end);
 	}
 	
@@ -109,10 +110,6 @@ public class SmartPursuit implements PursuitStrategy {
 				firstMove.put(left, firstMove.get(point));
 		}
 
-		
-
-		
-		
 		//Returns the list of all valid neighbors
 		return neighbors;
 	}
