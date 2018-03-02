@@ -19,8 +19,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 		
 		Random rand = new Random();
 		
-		//Sets the location of the ship to (1, 1) every time
-		//TODO set a random location for the ship
+		//Sets the location of the ship to a random position to the left side of the map
 		while(location == null) {
 			int x = rand.nextInt(oceanMap.getDimension() / 10);
 			int y = rand.nextInt(oceanMap.getDimension());
