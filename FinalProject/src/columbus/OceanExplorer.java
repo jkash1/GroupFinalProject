@@ -210,18 +210,23 @@ public class OceanExplorer extends Application{
 		return shipImageView;
 	}
 	
-	
-	
-	
 	public void updateShips() {
 		//Updates the image view for the player ship
 		shipImageView.setX(ship.getShipLocation().x * scale);
 		shipImageView.setY(ship.getShipLocation().y * scale);
 		
+		//TODO This is the win condition but it currently only prints to the console
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 2)
+			System.out.println("you win");
+		
 		//Updates the image views for each pirate ship
 		for(int i = 0; i < pirates.size(); i++) {
 			pirateImages.get(i).setX(pirates.get(i).getShipLocation().x * scale);
 			pirateImages.get(i).setY(pirates.get(i).getShipLocation().y * scale);
+			
+			//TODO This is the lose condition but it currently only prints to the console
+			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation()))
+				System.out.println("you lose");
 		}
 	}
 	
