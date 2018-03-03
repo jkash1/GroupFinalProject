@@ -73,11 +73,20 @@ public class GiantSquid implements Monster{
 	@Override
 	public void move() {
 		int xMove = getX() + random.nextInt(3)-1;
-		if (xMove >=0 && xMove <= 30)
-			setX(xMove);
-		// Move Y
 		int yMove = getY() + random.nextInt(3)-1;
-		if (yMove >=0 && yMove <=30)
+		if(isValidMove(xMove, yMove)) {
+			setX(xMove);
 			setY(yMove);
+		}
+		
+	}
+	//checks to see if the coordinate is an ocean
+	public boolean isValidMove(int x, int y) {
+		if(x >= 0 && x < 30)
+			if(y>= 0 && y < 30)
+				if(oceanMap.getMap()[x][y] == 0)
+					return true;
+		
+		return false;
 	}
 }
