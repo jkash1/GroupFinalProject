@@ -26,6 +26,10 @@ public class SmartPursuit implements PursuitStrategy {
 		visited[start.x][start.y] = true;
 		
 		for(Point neighbor : getNeighbors(start, firstMove)) {
+			//If the target ship is directly next to the pirate ship it will move directly that spot
+			if(neighbor.equals(end))
+				return firstMove.get(neighbor);
+			
 			//Adds the neighbors of the initial point to the queue and sets them to visited
 			queue.add(neighbor);
 			visited[neighbor.x][neighbor.y] = true;
