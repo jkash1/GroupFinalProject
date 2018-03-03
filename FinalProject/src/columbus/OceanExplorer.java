@@ -25,6 +25,8 @@ public class OceanExplorer extends Application{
 	ShipInterface ship;	
 	LinkedList<ShipInterface> pirates = new LinkedList<ShipInterface>();
 	LinkedList<ImageView> pirateImages = new LinkedList<ImageView>();
+	MonsterSpawner monsterSpawner;
+	Thread monstersThread;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -48,6 +50,13 @@ public class OceanExplorer extends Application{
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
 		oceanStage.show();
 		
+		//Spawns the monsters and starts the thread
+		monsterSpawner = new MonsterSpawner(20);
+		monsterSpawner.addToPane(root.getChildren());
+		
+		monstersThread = new Thread(monsterSpawner);
+	    monstersThread.start();
+	    
 		//Start listening for user input and moving the boat
 		startSailing();
 	}
