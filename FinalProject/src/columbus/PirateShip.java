@@ -21,7 +21,7 @@ public class PirateShip implements ShipInterface, Observer {
 		location = new Point(x, y);
 		
 		//Creates a pursuit strategy for the pirate ship
-		pursuitStrategy = new SmartPursuit();
+		setStrategy(new SmartPursuit());
 	}
 	
 	public void setStrategy(PursuitStrategy strategy) {
