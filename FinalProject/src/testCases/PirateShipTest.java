@@ -6,6 +6,8 @@ import java.awt.Point;
 
 import org.junit.Test;
 
+import columbus.OceanMap;
+
 public class PirateShipTest {
 	columbus.OceanMap oceanMap;
 
@@ -36,6 +38,13 @@ public class PirateShipTest {
 			}
 		}
 		assertFalse(error);
+	}
+	
+	@Test
+	public void SingletonTest() {
+		columbus.OceanMap oceanMap1 = OceanMap.getInstance();
+		columbus.OceanMap oceanMap2 = OceanMap.getInstance();
+		assertEquals(oceanMap1, oceanMap2);
 	}
 
 }

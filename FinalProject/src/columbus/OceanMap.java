@@ -97,4 +97,5 @@ public class OceanMap {
 	public int getDimension() {
 		return dimension;
 	}
+	
 }
