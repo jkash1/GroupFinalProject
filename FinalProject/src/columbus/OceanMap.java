@@ -98,4 +98,7 @@ public class OceanMap {
 		return dimension;
 	}
 	
+	public int whatIs(int x, int y) {
+		return map[x][y];
+	}
 }

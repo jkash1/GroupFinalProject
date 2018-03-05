@@ -27,17 +27,9 @@ public class PirateShipTest {
 	//should probably be in its own separate unit case
 	@Test
 	public void OceanMapTest() {
-		int[][] oMap = oceanMap.getMap();
-		int dimension = oceanMap.getDimension();
-		boolean error = false;
-		for (int x = 0; x < dimension; x++) {
-			for (int y = 0; y < dimension; y++) {
-				if (oMap[x][y] < 0) {
-					error = true;
-				}
-			}
-		}
-		assertFalse(error);
+		oceanMap = OceanMap.getInstance();
+		int cell = columbus.OceanMap.whatIs(0,0);
+		assertTrue(cell >= 0);
 	}
 	
 	@Test
