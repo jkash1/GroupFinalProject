@@ -7,7 +7,7 @@ public class OceanMap {
 	static OceanMap oceanMap;
 	
 	//Creates a 2 dimensional integer array to store the map
-	int[][] map;
+	static int[][] map;
 	
 	//Integer variables for map dimensions, normal island count, and pirate island count
 	int dimension;
@@ -98,7 +98,7 @@ public class OceanMap {
 		return dimension;
 	}
 	
-	public int whatIs(int x, int y) {
+	public static int whatIs(int x, int y) {
 		return map[x][y];
 	}
 }
