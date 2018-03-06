@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Paddle extends PowerUps{
 	ShipInterface ability;
-	
+	int velocity;
 	public Paddle(ShipInterface ability) {
 		this.ability = ability;
 	}
@@ -14,30 +14,30 @@ public class Paddle extends PowerUps{
 	}
 
 	@Override
-	public void moveNorth() {
-		ability.moveNorth();
+	public void moveNorth(int velocity) {
+		ability.moveNorth(velocity);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveEast() {
-		ability.moveEast();
+	public void moveEast(int velocity) {
+		ability.moveEast(velocity);
 		//ability.moveEast();
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveSouth() {
-		ability.moveSouth();
+	public void moveSouth(int velocity) {
+		ability.moveSouth(velocity);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveWest() {
-		ability.moveWest();
+	public void moveWest(int velocity) {
+		ability.moveWest(velocity);
 		// TODO Auto-generated method stub
 		
 	}
@@ -64,7 +64,7 @@ public class Paddle extends PowerUps{
 	@Override
 	public int getVelocity() {
 		// TODO Auto-generated method stub
-		return ability.getVelocity();
+		return ability.getVelocity()*2;
 	}
 	
 

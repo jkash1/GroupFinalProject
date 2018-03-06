@@ -12,6 +12,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 	Status status;
 	boolean moveable = true;
 	int velocity = 1;
+	int count = 0;
 	//String description;
 	
 	public PlayerShip() {
@@ -40,57 +41,57 @@ public class PlayerShip extends Observable implements ShipInterface{
 	
 	
 
-	public void moveNorth() {
+	public void moveNorth(int velocity) {
 		if(moveable) {
 			//Checks if the ship is not already at the top edge of the map
 			if(location.y > 0) {
 				//Checks if the space above is a water square
-				if(map[location.x][location.y - 1] == 0) {
+				if(map[location.x][location.y-1] == 0) {
 					//Moves the ship 1 square north
-					location.y-= velocity;
-					updateObservers();
+					location.y--;
+					updateObservers(velocity);
 				}
 			}
 		}
 	}
 
-	public void moveEast() {
+	public void moveEast(int velocity) {
 		if(moveable) {
 			//Checks if the ship is not already at the right edge of the map
 			if(location.x < oceanMap.getDimension() - 1) {
 				//Checks if the space to the right is a water square
 				if(map[location.x + 1][location.y] == 0) {
 					//Moves the ship 1 square east
-					location.x+= velocity;
-					updateObservers();
+					location.x++;
+					updateObservers(velocity);
 				}
 			}
 		}
 	}
 
-	public void moveSouth() {
+	public void moveSouth(int velocity) {
 		if(moveable) {
 			//Checks if the ship is not already at the bottom edge of the map
 			if(location.y < oceanMap.getDimension() - 1) {
 				//Checks if the space below is a water square
 				if(map[location.x][location.y + 1] == 0) {
 					//Moves the ship 1 square south
-					location.y+= velocity;
-					updateObservers();
+					location.y++;
+					updateObservers(velocity);
 				}
 			}
 		}
 	}
 
-	public void moveWest() {
+	public void moveWest(int velocity) {
 		if(moveable) {
 			//Checks if the ship is not already at the left edge of the map
 			if(location.x > 0) {
 				//Checks if the space to the left is a water square
 				if(map[location.x - 1][location.y] == 0) {
 					//Moves the ship 1 square west
-					location.x-=velocity;
-					updateObservers();
+					location.x--;
+					updateObservers(velocity);
 				}
 			}
 		}
@@ -98,10 +99,14 @@ public class PlayerShip extends Observable implements ShipInterface{
 	public int getVelocity() {
 		return velocity;
 	}
-	public void updateObservers() {
+	public void updateObservers(int velocity) {
 		//Notifies the observers that the ship has moved
 		setChanged();
-		notifyObservers();
+		count++;
+		if(count == velocity) {
+			notifyObservers();
+			count = 0;
+		}
 	}
 	
 	public String getType() {

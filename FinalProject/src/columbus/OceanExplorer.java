@@ -61,8 +61,8 @@ public class OceanExplorer extends Application{
 	    //testing decorator pattern
 	    ship = new Paddle(ship);
 	    //ship = new RocketBooster(ship);
-	    ship = new Booze(ship);
-	    System.out.println(ship.getAbilities());
+	    //ship = new Booze(ship);
+	    System.out.println(ship.getAbilities() + " " + ship.getVelocity());
 	    
 		//Start listening for user input and moving the boat
 		startSailing();
@@ -76,19 +76,19 @@ public class OceanExplorer extends Application{
 					switch(ke.getCode()) {
 					case D:
 					case RIGHT:
-						ship.moveEast();
+						ship.moveEast(ship.getVelocity());
 						break;
 					case A:	
 					case LEFT:
-						ship.moveWest();
+						ship.moveWest(ship.getVelocity());
 						break;
 					case W:
 					case UP:
-						ship.moveNorth();
+						ship.moveNorth(ship.getVelocity());
 						break;
 					case S:	
 					case DOWN:
-						ship.moveSouth();
+						ship.moveSouth(ship.getVelocity());
 						break;
 					case Q:
 						System.exit(0);
