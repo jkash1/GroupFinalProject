@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class OceanExplorer extends Application{
 
 	int scale = 20;
-	int dimensions;
+	public static int dimensions;
 	Image shipImage, pirateImage, IslandImage;
 	ImageView shipImageView;
 	OceanMap oceanMap;
