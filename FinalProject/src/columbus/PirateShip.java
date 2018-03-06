@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PirateShip implements ShipInterface, Observer {
+public class PirateShip implements Observer, ShipInterface {
 	//Creates global variables for oceanMap, map array, and location
 	OceanMap oceanMap;
 	int[][] map;
@@ -106,5 +106,11 @@ public class PirateShip implements ShipInterface, Observer {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public String getAbilities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -58,6 +58,12 @@ public class OceanExplorer extends Application{
 		monstersThread = new Thread(monsterSpawner);
 	    monstersThread.start();
 	    
+	    //testing decorator pattern
+	    ship = new Paddle(ship);
+	    //ship = new RocketBooster(ship);
+	    ship = new Booze(ship);
+	    System.out.println(ship.getAbilities());
+	    
 		//Start listening for user input and moving the boat
 		startSailing();
 	}
