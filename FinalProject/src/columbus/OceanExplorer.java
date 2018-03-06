@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -228,6 +230,12 @@ public class OceanExplorer extends Application{
 		if(checkWin()) {
 			System.out.println("you win");
 			stopPlaying();
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("End Game");
+			alert.setHeaderText("You Found the Treasure!");
+			alert.setContentText("You Win!");
+			alert.showAndWait();
+		
 		}
 		
 		//Updates the image views for each pirate ship
@@ -238,6 +246,13 @@ public class OceanExplorer extends Application{
 			//TODO This is the lose condition but it currently only prints to the console
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
 				System.out.println("you lose");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("End Game");
+				alert.setHeaderText("The Pirates Boarded your ship!");
+				alert.setContentText("You Loose!");
+				alert.showAndWait();
+				
+				
 				stopPlaying();
 			}
 		}
