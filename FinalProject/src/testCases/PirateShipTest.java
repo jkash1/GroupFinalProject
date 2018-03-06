@@ -29,7 +29,7 @@ public class PirateShipTest {
 	public void OceanMapTest() {
 		oceanMap = OceanMap.getInstance();
 		int cell = columbus.OceanMap.whatIs(0,0);
-		assertTrue(cell >= 0);
+		assertTrue(cell >= 0 && cell <= 6);
 	}
 	
 	@Test

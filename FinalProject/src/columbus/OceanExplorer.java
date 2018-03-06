@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -233,6 +234,7 @@ public class OceanExplorer extends Application{
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
 				System.out.println("you lose");
 				stopPlaying();
+
 			}
 		}
 	}

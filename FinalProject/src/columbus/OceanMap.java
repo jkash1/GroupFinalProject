@@ -98,7 +98,10 @@ public class OceanMap {
 		return dimension;
 	}
 	
+	
 	public static int whatIs(int x, int y) {
+		//This method returns an integer signifying the object at the given "coordinates"
+		//Used for JUnit testing
 		return map[x][y];
 	}
 }
