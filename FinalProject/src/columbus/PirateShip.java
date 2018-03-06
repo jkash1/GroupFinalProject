@@ -9,6 +9,7 @@ public class PirateShip implements ShipInterface, Observer {
 	OceanMap oceanMap;
 	int[][] map;
 	Point location;
+	boolean moveable = true;
 	
 	PursuitStrategy pursuitStrategy;
 	
@@ -81,25 +82,29 @@ public class PirateShip implements ShipInterface, Observer {
 	public String getType() {
 		return "pirate";
 	}
-
+	public void stopGame() {
+		moveable = false;
+	}
 	public void update(Observable ship, Object arg1) {
-		//Gets the recommended move from the pursuit strategy
-		String move = pursuitStrategy.decideMove(location, ((ShipInterface) ship).getShipLocation());
-		
-		//Moves based on the recommended move
-		switch(move) {
-		case("UP"):
-			moveNorth();
-			break;
-		case("DOWN"):
-			moveSouth();
-			break;
-		case("LEFT"):
-			moveWest();
-			break;
-		case("RIGHT"):
-			moveEast();
-			break;
+		if(moveable) {
+			//Gets the recommended move from the pursuit strategy
+			String move = pursuitStrategy.decideMove(location, ((ShipInterface) ship).getShipLocation());
+			
+			//Moves based on the recommended move
+			switch(move) {
+			case("UP"):
+				moveNorth();
+				break;
+			case("DOWN"):
+				moveSouth();
+				break;
+			case("LEFT"):
+				moveWest();
+				break;
+			case("RIGHT"):
+				moveEast();
+				break;
+			}
 		}
 	}
 }

@@ -210,14 +210,18 @@ public class OceanExplorer extends Application{
 		return shipImageView;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void updateShips() {
 		//Updates the image view for the player ship
 		shipImageView.setX(ship.getShipLocation().x * scale);
 		shipImageView.setY(ship.getShipLocation().y * scale);
 		
 		//TODO This is the win condition but it currently only prints to the console
-		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 2)
+		if(checkWin()) {
 			System.out.println("you win");
+			ship.stopGame();
+			monstersThread.stop();
+		}
 		
 		//Updates the image views for each pirate ship
 		for(int i = 0; i < pirates.size(); i++) {
@@ -225,9 +229,41 @@ public class OceanExplorer extends Application{
 			pirateImages.get(i).setY(pirates.get(i).getShipLocation().y * scale);
 			
 			//TODO This is the lose condition but it currently only prints to the console
-			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation()))
+			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
 				System.out.println("you lose");
+				pirates.get(i).stopGame();
+				ship.stopGame();
+				monstersThread.stop();
+			}
 		}
+	}
+	
+	public boolean checkWin() {
+		boolean output = false;
+		//checks right adj cell
+		if(ship.getShipLocation().x < dimensions - 1)
+			if(map[ship.getShipLocation().x+1][ship.getShipLocation().y] == 3) 
+				output = true;
+			
+		
+		//checks left adj cell
+		if(ship.getShipLocation().x > 0)
+			if(map[ship.getShipLocation().x-1][ship.getShipLocation().y] == 3) 
+				output = true;
+		
+		
+		//checks top adj cell
+		if(ship.getShipLocation().y < dimensions - 1) 
+			if(map[ship.getShipLocation().x][ship.getShipLocation().y+1] == 3) 
+				output = true;
+			
+		
+		//checks bot adj cell
+		if(ship.getShipLocation().y > 0)
+			if(map[ship.getShipLocation().x][ship.getShipLocation().y-1] == 3) 
+				output = true;
+			
+		return output;
 	}
 	
 	public static void main(String[] args) {

@@ -10,4 +10,5 @@ public interface ShipInterface {
 	public void moveWest();
 	public Point getShipLocation();
 	public String getType();
+	public void stopGame();
 }
