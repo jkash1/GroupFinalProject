@@ -9,7 +9,6 @@ public class PlayerShip extends Observable implements ShipInterface{
 	OceanMap oceanMap;
 	int[][] map;
 	Point location;
-	Status status;
 	boolean moveable = true;
 	int velocity = 1;
 	//String description;

@@ -63,7 +63,7 @@ public class OceanExplorer extends Application{
 	    //testing decorator pattern
 	    ship = new Paddle(ship);
 	    //ship = new RocketBooster(ship);
-	    ship = new Booze(ship);
+	  //  ship = new Booze(ship);
 	    System.out.println(ship.getAbilities());
 	    
 		//Start listening for user input and moving the boat
