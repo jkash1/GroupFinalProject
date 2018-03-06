@@ -11,4 +11,6 @@ public interface ShipInterface {
 	public Point getShipLocation();
 	public String getType();
 	public void stopGame();
+	public String getAbilities();
+	public int getVelocity();
 }

@@ -24,6 +24,7 @@ public class PirateShipTest {
 		assertEquals(loc, new Point(1,0));
 	}
 	
+<<<<<<< HEAD
 	//should probably be in its own separate unit case
 	@Test
 	public void OceanMapTest() {
@@ -31,12 +32,8 @@ public class PirateShipTest {
 		int cell = columbus.OceanMap.whatIs(0,0);
 		assertTrue(cell >= 0 && cell <= 6);
 	}
+=======
+>>>>>>> 0828c50ab88fb7fc6089901a4a29b7d18b27b983
 	
-	@Test
-	public void SingletonTest() {
-		columbus.OceanMap oceanMap1 = OceanMap.getInstance();
-		columbus.OceanMap oceanMap2 = OceanMap.getInstance();
-		assertEquals(oceanMap1, oceanMap2);
-	}
 
 }

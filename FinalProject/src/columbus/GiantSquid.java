@@ -2,34 +2,33 @@ package columbus;
 
 import java.util.Random;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class GiantSquid implements Monster{
 
 	int x;
 	int y;
-	Circle circle;
 	int scalingFactor;
-	int radius = 5;
 	OceanMap oceanMap;
 	Random random = new Random();
+	
+	ImageView squidImage;
 	
 	//constructor 
 	public GiantSquid(int x, int y, int scalingFactor) {
 		this.x = x;
 		this.y = y;
-		circle= new Circle();
+		Image squid = new Image("/images/squid.png", scalingFactor, scalingFactor, false, false);
+		squidImage = new ImageView(squid);
 		setPositionX(x);
 		setPositionY(y);
-		circle.setRadius(radius);
 		this.scalingFactor = scalingFactor;
-		circle.setFill(Color.RED);
 		oceanMap = OceanMap.getInstance();
 	}
-	@Override
-	public Circle getCircle() {
-		return circle;
+	
+	public ImageView getImage() {
+		return squidImage;
 	}
 
 	@Override
@@ -53,21 +52,15 @@ public class GiantSquid implements Monster{
 	public int getY() {
 		return y;
 	}
-
+	
 	@Override
-	public void setLineColor(Circle circle, Color color){
-		circle.setStroke(color);
-		circle.setFill(color);
+	public void setPositionX(int x) {
+		squidImage.setX(x * scalingFactor);
 	}
 	
 	@Override
-	public void setPositionX(int x){
-		circle.setCenterX(x*scalingFactor + (scalingFactor/2));
-	}
-	
-	@Override
-	public void setPositionY(int y){
-		circle.setCenterY(y*scalingFactor + (scalingFactor/2));
+	public void setPositionY(int y) {
+		squidImage.setY(y * scalingFactor);
 	}
 	
 	@Override

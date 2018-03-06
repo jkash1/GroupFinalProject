@@ -4,12 +4,13 @@ import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PirateShip implements ShipInterface, Observer {
+public class PirateShip implements Observer, ShipInterface {
 	//Creates global variables for oceanMap, map array, and location
 	OceanMap oceanMap;
 	int[][] map;
 	Point location;
 	boolean moveable = true;
+	int velocity = 1;
 	
 	PursuitStrategy pursuitStrategy;
 	
@@ -41,7 +42,7 @@ public class PirateShip implements ShipInterface, Observer {
 			//Checks if the space above is a water square
 			if(map[location.x][location.y - 1] == 0) {
 				//Moves the ship 1 square north
-				location.y--;
+				location.y-= velocity;
 			}
 		}
 	}
@@ -52,7 +53,7 @@ public class PirateShip implements ShipInterface, Observer {
 			//Checks if the space to the right is a water square
 			if(map[location.x + 1][location.y] == 0) {
 				//Moves the ship 1 square east
-				location.x++;
+				location.x+=velocity;
 			}
 		}
 	}
@@ -63,7 +64,7 @@ public class PirateShip implements ShipInterface, Observer {
 			//Checks if the space below is a water square
 			if(map[location.x][location.y + 1] == 0) {
 				//Moves the ship 1 square south
-				location.y++;
+				location.y+=velocity;
 			}
 		}
 	}
@@ -74,7 +75,7 @@ public class PirateShip implements ShipInterface, Observer {
 			//Checks if the space to the left is a water square
 			if(map[location.x - 1][location.y] == 0) {
 				//Moves the ship 1 square west
-				location.x--;
+				location.x-=velocity;
 			}
 		}
 	}
@@ -106,5 +107,17 @@ public class PirateShip implements ShipInterface, Observer {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public String getAbilities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getVelocity() {
+		// TODO Auto-generated method stub
+		return velocity;
 	}
 }
