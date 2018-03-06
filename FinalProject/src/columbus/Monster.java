@@ -1,11 +1,10 @@
 package columbus;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.image.ImageView;
 
 public interface Monster {	
 	
-	public Circle getCircle();
+	public ImageView getImage();
 	
 	public void setX(int x);
 	
@@ -14,8 +13,6 @@ public interface Monster {
 	int getX();
 	
 	int getY();
-	
-	public void setLineColor(Circle circle, Color color);
 	
 	public void setPositionX(int x);
 	

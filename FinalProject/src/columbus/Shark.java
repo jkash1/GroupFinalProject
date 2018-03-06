@@ -2,34 +2,33 @@ package columbus;
 
 import java.util.Random;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Shark implements Monster {
 
 	int x;
 	int y;
-	Circle circle;
 	int scalingFactor;
-	int radius = 5;
 	OceanMap oceanMap;
 	Random random  = new Random();
+	
+	ImageView sharkImage;
 	
 	//Constructor
 	public Shark(int x, int y, int scalingFactor) {
 		this.x = x;
 		this.y = y;
-		circle= new Circle();
+		Image shark = new Image("/images/shark.png", scalingFactor, scalingFactor, false, false);
+		sharkImage = new ImageView(shark);
 		setPositionX(x);
 		setPositionY(y);
-		circle.setRadius(radius);
 		this.scalingFactor = scalingFactor;
-		circle.setFill(Color.BLUE);
 		oceanMap = OceanMap.getInstance();
 	}
-	@Override
-	public Circle getCircle() {
-		return circle;
+	
+	public ImageView getImage() {
+		return sharkImage;
 	}
 
 	@Override
@@ -53,21 +52,15 @@ public class Shark implements Monster {
 	public int getY() {
 		return y;
 	}
-
-	@Override
-	public void setLineColor(Circle circle, Color color){
-		circle.setStroke(color);
-		circle.setFill(color);
-	}
 	
 	@Override
 	public void setPositionX(int x){
-		circle.setCenterX(x*scalingFactor + (scalingFactor/2));
+		sharkImage.setX(x * scalingFactor);
 	}
 	
 	@Override
 	public void setPositionY(int y){
-		circle.setCenterY(y*scalingFactor + (scalingFactor/2));
+		sharkImage.setY(y * scalingFactor);
 	}
 	
 	@Override

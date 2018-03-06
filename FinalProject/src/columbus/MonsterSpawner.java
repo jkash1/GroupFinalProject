@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.shape.Circle;
+import javafx.scene.image.ImageView;
 
 public class MonsterSpawner implements Runnable{
 
@@ -41,10 +41,8 @@ public class MonsterSpawner implements Runnable{
 	//adds the monsters to the scene
 	public void addToPane(ObservableList<Node> sceneGraph){
 		for(Monster monsterSprite: monsterSprites){
-			
-			Circle circle = monsterSprite.getCircle();
-			System.out.println("Adding circle to pane: " + circle.getCenterX() + " " + circle.getCenterY() + " " + radius);
-			sceneGraph.add(circle);
+			ImageView image = monsterSprite.getImage();
+			sceneGraph.add(image);
 		}
 	}
 	@Override
