@@ -78,6 +78,14 @@ public class RocketBooster extends PowerUps{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+	@Override
+	public int getVelocity() {
+		// TODO Auto-generated method stub
+		return ability.getVelocity();
+	}
 	
 
 }

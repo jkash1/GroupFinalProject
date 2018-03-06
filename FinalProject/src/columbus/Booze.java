@@ -60,6 +60,12 @@ public class Booze implements ShipInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getVelocity() {
+		// TODO Auto-generated method stub
+		return ability.getVelocity();
+	}
 	
 	
 
