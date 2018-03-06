@@ -27,6 +27,7 @@ public class OceanExplorer extends Application{
 	LinkedList<ImageView> pirateImages = new LinkedList<ImageView>();
 	MonsterSpawner monsterSpawner;
 	Thread monstersThread;
+	boolean playing = true;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -62,36 +63,38 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void startSailing() {
-		//Creates a new key event handler to move the player
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent ke) {
-				switch(ke.getCode()) {
-				case D:
-				case RIGHT:
-					ship.moveEast();
-					break;
-				case A:	
-				case LEFT:
-					ship.moveWest();
-					break;
-				case W:
-				case UP:
-					ship.moveNorth();
-					break;
-				case S:	
-				case DOWN:
-					ship.moveSouth();
-					break;
-				case Q:
-					System.exit(0);
-				default:
-					break;
+		if(playing) {
+			//Creates a new key event handler to move the player
+			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				public void handle(KeyEvent ke) {
+					switch(ke.getCode()) {
+					case D:
+					case RIGHT:
+						ship.moveEast();
+						break;
+					case A:	
+					case LEFT:
+						ship.moveWest();
+						break;
+					case W:
+					case UP:
+						ship.moveNorth();
+						break;
+					case S:	
+					case DOWN:
+						ship.moveSouth();
+						break;
+					case Q:
+						System.exit(0);
+					default:
+						break;
+					}
+					
+					//Updates the locations of all ships
+					updateShips();
 				}
-				
-				//Updates the locations of all ships
-				updateShips();
-			}
-		});
+			});
+		}
 	}
 	
 	public void drawMap() {
@@ -210,7 +213,6 @@ public class OceanExplorer extends Application{
 		return shipImageView;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void updateShips() {
 		//Updates the image view for the player ship
 		shipImageView.setX(ship.getShipLocation().x * scale);
@@ -219,8 +221,7 @@ public class OceanExplorer extends Application{
 		//TODO This is the win condition but it currently only prints to the console
 		if(checkWin()) {
 			System.out.println("you win");
-			ship.stopGame();
-			monstersThread.stop();
+			stopPlaying();
 		}
 		
 		//Updates the image views for each pirate ship
@@ -231,9 +232,7 @@ public class OceanExplorer extends Application{
 			//TODO This is the lose condition but it currently only prints to the console
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
 				System.out.println("you lose");
-				pirates.get(i).stopGame();
-				ship.stopGame();
-				monstersThread.stop();
+				stopPlaying();
 			}
 		}
 	}
@@ -264,6 +263,16 @@ public class OceanExplorer extends Application{
 				output = true;
 			
 		return output;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void stopPlaying() {
+		playing = false;
+		ship.stopGame();
+		monstersThread.stop();
+		for(ShipInterface p : pirates) {
+			p.stopGame();
+		}
 	}
 	
 	public static void main(String[] args) {
