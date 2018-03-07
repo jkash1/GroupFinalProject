@@ -61,10 +61,6 @@ public class OceanExplorer extends Application{
 	    monstersThread.start();
 	    
 	    //testing decorator pattern
-	    ship = new Paddle(ship);
-	    //ship = new RocketBooster(ship);
-
-	    //ship = new Booze(ship);
 	    System.out.println(ship.getAbilities() + " " + ship.getVelocity());
 	    
 		//Start listening for user input and moving the boat
@@ -99,6 +95,8 @@ public class OceanExplorer extends Application{
 						break;
 					}
 					
+					//updates ship with powerups
+					checkPowerUp();
 					//Updates the locations of all ships
 					updateShips();
 				}
@@ -258,6 +256,20 @@ public class OceanExplorer extends Application{
 			}
 		}
 	}
+	
+	public void checkPowerUp() {
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 4) {
+			ship = new Paddle(ship);
+		}
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 5) {
+			ship = new RocketBooster(ship);
+		}
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 6) {
+			ship = new Booze(ship);
+		}
+	}
+	
+	
 	
 	public boolean checkWin() {
 		boolean output = false;

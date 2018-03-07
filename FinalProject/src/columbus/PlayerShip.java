@@ -45,9 +45,9 @@ public class PlayerShip extends Observable implements ShipInterface{
 			//Checks if the ship is not already at the top edge of the map
 			if(location.y > 0) {
 				//Checks if the space above is a water square
-				if(map[location.x][location.y-1] == 0) {
+				if(map[location.x][location.y-1] != 1 && map[location.x][location.y-1] != 3) {
 					//Moves the ship 1 square north
-					location.y--;
+					location.y-=velocity;
 					updateObservers(velocity);
 				}
 			}
@@ -59,9 +59,9 @@ public class PlayerShip extends Observable implements ShipInterface{
 			//Checks if the ship is not already at the right edge of the map
 			if(location.x < oceanMap.getDimension() - 1) {
 				//Checks if the space to the right is a water square
-				if(map[location.x + 1][location.y] == 0) {
+				if(map[location.x + 1][location.y] != 1 && map[location.x + 1][location.y] != 3) {
 					//Moves the ship 1 square east
-					location.x++;
+					location.x+=velocity;
 					updateObservers(velocity);
 				}
 			}
@@ -73,9 +73,9 @@ public class PlayerShip extends Observable implements ShipInterface{
 			//Checks if the ship is not already at the bottom edge of the map
 			if(location.y < oceanMap.getDimension() - 1) {
 				//Checks if the space below is a water square
-				if(map[location.x][location.y + 1] == 0) {
+				if(map[location.x][location.y + 1] != 1 &&  map[location.x][location.y + 1] != 3) {
 					//Moves the ship 1 square south
-					location.y++;
+					location.y+=velocity;
 					updateObservers(velocity);
 				}
 			}
@@ -87,9 +87,9 @@ public class PlayerShip extends Observable implements ShipInterface{
 			//Checks if the ship is not already at the left edge of the map
 			if(location.x > 0) {
 				//Checks if the space to the left is a water square
-				if(map[location.x - 1][location.y] == 0) {
+				if(map[location.x - 1][location.y] != 1 && map[location.x - 1][location.y] != 3) {
 					//Moves the ship 1 square west
-					location.x--;
+					location.x-=velocity;
 					updateObservers(velocity);
 				}
 			}
