@@ -64,7 +64,7 @@ public class Paddle extends PowerUps{
 	@Override
 	public int getVelocity() {
 		// TODO Auto-generated method stub
-		return ability.getVelocity()*2;
+		return ability.getVelocity()+1;
 	}
 	
 
