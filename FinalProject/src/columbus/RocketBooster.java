@@ -84,7 +84,7 @@ public class RocketBooster extends PowerUps{
 	@Override
 	public int getVelocity() {
 		// TODO Auto-generated method stub
-		return ability.getVelocity();
+		return ability.getVelocity()+3;
 	}
 	
 
