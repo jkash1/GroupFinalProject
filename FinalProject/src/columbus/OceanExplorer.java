@@ -11,9 +11,13 @@ import javafx.scene.control.Alert;
 
 
 import javafx.scene.control.Alert.AlertType;
+<<<<<<< HEAD
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+=======
+import javafx.scene.control.ButtonType;
+>>>>>>> b4eafcb0287b93e1091e03b5ddfe72172377414e
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -248,8 +252,12 @@ public class OceanExplorer extends Application{
 			alert.setTitle("End Game");
 			alert.setHeaderText("You Found the Treasure!");
 			alert.setContentText("You Win!");
+			alert.getButtonTypes().remove(0);
+			alert.getButtonTypes().add(new ButtonType("Quit"));
 			alert.showAndWait();
 		
+			if(alert.getResult().getText() == "Quit")
+				System.exit(0);
 		}
 		
 		//Updates the image views for each pirate ship
@@ -259,13 +267,13 @@ public class OceanExplorer extends Application{
 			
 			//TODO This is the lose condition but it currently only prints to the console
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
-				System.out.println("you lose");
 				Alert alert = new Alert(AlertType.INFORMATION);
 				ImageView pirateShip = new ImageView("/images/pirateShip.png/");
 				pirateShip.setFitWidth(100);
 				pirateShip.setFitHeight(100);
 				alert.setTitle("End Game");
 				alert.setHeaderText("The Pirates Boarded your ship!");
+<<<<<<< HEAD
 				alert.setGraphic(pirateShip);
 				alert.setContentText("You Lose!");
 				alert.showAndWait();
@@ -273,6 +281,15 @@ public class OceanExplorer extends Application{
 				
 				stopPlaying();
 				System.exit(0);
+=======
+				alert.setContentText("You Loose!");
+				alert.getButtonTypes().remove(0);
+				alert.getButtonTypes().add(new ButtonType("Quit"));
+				alert.showAndWait();
+				
+				if(alert.getResult().getText() == "Quit")
+					System.exit(0);
+>>>>>>> b4eafcb0287b93e1091e03b5ddfe72172377414e
 			}
 		}
 	}
