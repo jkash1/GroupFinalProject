@@ -248,9 +248,13 @@ public class OceanExplorer extends Application{
 			System.out.println("you win");
 			stopPlaying();
 			Alert alert = new Alert(AlertType.INFORMATION);
+			ImageView TreasureIsland = new ImageView("/images/treasureIsland.png/");
+			TreasureIsland.setFitWidth(100);
+			TreasureIsland.setFitHeight(100);
 			alert.setTitle("End Game");
 			alert.setHeaderText("You Found the Treasure!");
 			alert.setContentText("You Win!");
+			alert.setGraphic(TreasureIsland);
 			alert.getButtonTypes().remove(0);
 			alert.getButtonTypes().add(new ButtonType("Quit"));
 			alert.showAndWait();
