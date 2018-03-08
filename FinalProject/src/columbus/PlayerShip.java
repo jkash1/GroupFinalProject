@@ -47,7 +47,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 				//Checks if the space above is a water square
 				if(map[location.x][location.y-1] != 1 && map[location.x][location.y-1] != 3) {
 					//Moves the ship 1 square north
-					location.y-=velocity;
+					location.y--;
 					updateObservers(velocity);
 				}
 			}
@@ -61,7 +61,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 				//Checks if the space to the right is a water square
 				if(map[location.x + 1][location.y] != 1 && map[location.x + 1][location.y] != 3) {
 					//Moves the ship 1 square east
-					location.x+=velocity;
+					location.x++;
 					updateObservers(velocity);
 				}
 			}
@@ -75,7 +75,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 				//Checks if the space below is a water square
 				if(map[location.x][location.y + 1] != 1 &&  map[location.x][location.y + 1] != 3) {
 					//Moves the ship 1 square south
-					location.y+=velocity;
+					location.y++;
 					updateObservers(velocity);
 				}
 			}
@@ -89,7 +89,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 				//Checks if the space to the left is a water square
 				if(map[location.x - 1][location.y] != 1 && map[location.x - 1][location.y] != 3) {
 					//Moves the ship 1 square west
-					location.x-=velocity;
+					location.x--;
 					updateObservers(velocity);
 				}
 			}

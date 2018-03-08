@@ -24,8 +24,7 @@ public class PirateShipTest {
 		Point loc = pirate.getShipLocation();
 		assertEquals(loc, new Point(1,0));
 	}
-	
-<<<<<<< HEAD
+
 	//should probably be in its own separate unit case
 	@Test
 	public void OceanMapTest() {
@@ -33,8 +32,4 @@ public class PirateShipTest {
 		int cell = columbus.OceanMap.whatIs(0,0);
 		assertTrue(cell >= 0 && cell <= 6);
 	}
-=======
->>>>>>> 0828c50ab88fb7fc6089901a4a29b7d18b27b983
-	
-
 }
