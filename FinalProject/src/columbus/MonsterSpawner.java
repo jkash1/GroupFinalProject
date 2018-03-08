@@ -50,7 +50,7 @@ public class MonsterSpawner implements Runnable{
 		
 		while (true) {
 	    	try {
-				Thread.sleep(250);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

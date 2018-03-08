@@ -69,11 +69,13 @@ public class Shark implements Monster {
 	public void move() {
 		
 		int xMove = getX() + random.nextInt(3)-1;
-		int yMove = getY() + random.nextInt(3)-1;
+		int yMove = getY() + 1;
 		if(isValidMove(xMove, yMove)) {
 			setX(xMove);
 			setY(yMove);
 		}
+		if(yMove >= oceanMap.dimension)
+			setY(0);
 	}
 	//checks to see if the coordinate is an ocean
 	public boolean isValidMove(int x, int y) {
