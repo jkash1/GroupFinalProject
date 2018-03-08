@@ -1,19 +1,19 @@
 package columbus;
 
-import java.io.File;
+//import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
+//import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
 
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.Dialog;
+//import javafx.scene.control.Label;
 
 import javafx.scene.control.ButtonType;
 
