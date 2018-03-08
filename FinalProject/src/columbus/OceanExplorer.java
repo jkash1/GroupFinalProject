@@ -5,10 +5,10 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-<<<<<<< HEAD
-=======
+
+
 import javafx.scene.control.Alert.AlertType;
->>>>>>> 0828c50ab88fb7fc6089901a4a29b7d18b27b983
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
