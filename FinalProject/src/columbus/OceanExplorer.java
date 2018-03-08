@@ -372,6 +372,25 @@ public class OceanExplorer extends Application{
 			healthBar.get(i).setFill(Color.ORANGERED);
 			healthBar.get(i).setStroke(Color.RED);
 		}
+		
+		if(damage == 5) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			URL url = getClass().getResource("/images/shark.png");
+			Image pirate = new Image(url.toString(), 100, 100, false, false);
+			ImageView pirateShip = new ImageView(pirate);
+			pirateShip.setFitWidth(100);
+			pirateShip.setFitHeight(100);
+			alert.setTitle("End Game");
+			alert.setHeaderText("Your ship took too much damage and sunk!");
+
+			alert.setGraphic(pirateShip);
+			alert.setContentText("You Lose!");
+			alert.showAndWait();
+			
+			
+			stopPlaying();
+			System.exit(0);
+		}
 	}
 	
 	
