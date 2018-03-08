@@ -11,13 +11,12 @@ import javafx.scene.control.Alert;
 
 
 import javafx.scene.control.Alert.AlertType;
-<<<<<<< HEAD
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-=======
+
 import javafx.scene.control.ButtonType;
->>>>>>> b4eafcb0287b93e1091e03b5ddfe72172377414e
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -273,7 +272,7 @@ public class OceanExplorer extends Application{
 				pirateShip.setFitHeight(100);
 				alert.setTitle("End Game");
 				alert.setHeaderText("The Pirates Boarded your ship!");
-<<<<<<< HEAD
+
 				alert.setGraphic(pirateShip);
 				alert.setContentText("You Lose!");
 				alert.showAndWait();
@@ -281,7 +280,7 @@ public class OceanExplorer extends Application{
 				
 				stopPlaying();
 				System.exit(0);
-=======
+
 				alert.setContentText("You Loose!");
 				alert.getButtonTypes().remove(0);
 				alert.getButtonTypes().add(new ButtonType("Quit"));
@@ -289,7 +288,7 @@ public class OceanExplorer extends Application{
 				
 				if(alert.getResult().getText() == "Quit")
 					System.exit(0);
->>>>>>> b4eafcb0287b93e1091e03b5ddfe72172377414e
+
 			}
 		}
 	}
