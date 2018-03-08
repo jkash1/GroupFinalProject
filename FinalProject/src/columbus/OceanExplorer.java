@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 
 
 import javafx.scene.control.Alert.AlertType;
-
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -245,8 +245,12 @@ public class OceanExplorer extends Application{
 			alert.setTitle("End Game");
 			alert.setHeaderText("You Found the Treasure!");
 			alert.setContentText("You Win!");
+			alert.getButtonTypes().remove(0);
+			alert.getButtonTypes().add(new ButtonType("Quit"));
 			alert.showAndWait();
 		
+			if(alert.getResult().getText() == "Quit")
+				System.exit(0);
 		}
 		
 		//Updates the image views for each pirate ship
@@ -256,16 +260,16 @@ public class OceanExplorer extends Application{
 			
 			//TODO This is the lose condition but it currently only prints to the console
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
-				System.out.println("you lose");
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("End Game");
 				alert.setHeaderText("The Pirates Boarded your ship!");
 				alert.setContentText("You Loose!");
+				alert.getButtonTypes().remove(0);
+				alert.getButtonTypes().add(new ButtonType("Quit"));
 				alert.showAndWait();
 				
-				
-				stopPlaying();
-
+				if(alert.getResult().getText() == "Quit")
+					System.exit(0);
 			}
 		}
 	}
