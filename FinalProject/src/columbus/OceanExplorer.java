@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -39,6 +40,7 @@ public class OceanExplorer extends Application{
 	ShipInterface ship;	
 	LinkedList<ShipInterface> pirates = new LinkedList<ShipInterface>();
 	LinkedList<ImageView> pirateImages = new LinkedList<ImageView>();
+	LinkedList<Rectangle> healthBar = new LinkedList<Rectangle>();
 	MonsterSpawner monsterSpawner;
 	Thread monstersThread;
 	boolean playing = true;
@@ -74,6 +76,20 @@ public class OceanExplorer extends Application{
 				changeDifficulty(difficulty);
 			}
 		});
+		
+		//Create the health bar
+		for(int i = 1; i <= 5; i++) {
+			Rectangle rect = new Rectangle();
+			rect.setWidth((scale * dimensions) / 10);
+			rect.setHeight(scale * 2);
+			rect.setX(((scale * dimensions) / 2) - (i * rect.getWidth()));
+			rect.setY(scale * dimensions);
+			rect.setFill(Color.FORESTGREEN);
+			rect.setStroke(Color.DARKGREEN);
+			rect.setStrokeWidth(1);
+			root.getChildren().add(rect);
+			healthBar.add(rect);
+		}
 		
 		//Sets the scene, adds a title to the window, and shows it
 		oceanStage.setScene(scene);
@@ -351,6 +367,11 @@ public class OceanExplorer extends Application{
 		for(Monster monsterSprite : monsterSpawner.monsterSprites)
 			if(ship.getShipLocation().x == monsterSprite.getX() && ship.getShipLocation().y == monsterSprite.getY())
 				damage++;
+		
+		for(int i = 0; i < damage; i++) {
+			healthBar.get(i).setFill(Color.ORANGERED);
+			healthBar.get(i).setStroke(Color.RED);
+		}
 	}
 	
 	
