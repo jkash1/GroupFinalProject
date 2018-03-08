@@ -76,6 +76,8 @@ public class Shark implements Monster {
 		}
 		if(yMove >= oceanMap.dimension)
 			setY(0);
+		
+		
 	}
 	//checks to see if the coordinate is an ocean
 	public boolean isValidMove(int x, int y) {

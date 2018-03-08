@@ -78,9 +78,9 @@ public class OceanExplorer extends Application{
 		});
 		
 		//Create the health bar
-		for(int i = 1; i <= 5; i++) {
+		for(int i = 1; i <= 3; i++) {
 			Rectangle rect = new Rectangle();
-			rect.setWidth((scale * dimensions) / 10);
+			rect.setWidth((scale * dimensions) / 6);
 			rect.setHeight(scale * 2);
 			rect.setX(((scale * dimensions) / 2) - (i * rect.getWidth()));
 			rect.setY(scale * dimensions);
@@ -364,18 +364,22 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void checkDamage() {
+		Monster monster = null;
+		
 		for(Monster monsterSprite : monsterSpawner.monsterSprites)
-			if(ship.getShipLocation().x == monsterSprite.getX() && ship.getShipLocation().y == monsterSprite.getY())
+			if(ship.getShipLocation().x == monsterSprite.getX() && ship.getShipLocation().y == monsterSprite.getY()) {
 				damage++;
+				monster = monsterSprite;
+			}
 		
 		for(int i = 0; i < damage; i++) {
 			healthBar.get(i).setFill(Color.ORANGERED);
 			healthBar.get(i).setStroke(Color.RED);
 		}
 		
-		if(damage == 5) {
+		if(damage == 3) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			URL url = getClass().getResource("/images/shark.png");
+			URL url = getClass().getResource(monster.getClass() == Shark.class ? "/images/shark.png" : "/images/squid.png");
 			Image pirate = new Image(url.toString(), 100, 100, false, false);
 			ImageView pirateShip = new ImageView(pirate);
 			pirateShip.setFitWidth(100);
