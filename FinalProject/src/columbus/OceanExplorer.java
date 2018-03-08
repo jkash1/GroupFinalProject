@@ -22,7 +22,7 @@ public class OceanExplorer extends Application{
 	int scale = 20;
 	public static int dimensions;
 	Image shipImage, pirateImage, IslandImage;
-	ImageView shipImageView;
+	ImageView shipImageView, paddleImageView, rocketImageView, boozeImageView;
 	OceanMap oceanMap;
 	int[][] map;
 	Scene scene;
@@ -175,7 +175,15 @@ public class OceanExplorer extends Application{
 		//Sets the image view to the location passed in
 		islandImageView.setX(x * scale);
 		islandImageView.setY(y * scale);
-		
+
+		if(fileName == "/images/paddle.png") {
+			paddleImageView = islandImageView;
+		} else if(fileName == "/images/rocket.png") {
+			rocketImageView = islandImageView;
+		} else if(fileName == "/images/booze.png") {
+			boozeImageView = islandImageView;
+		}
+
 		//Adds the image view to the pane
 		root.getChildren().add(islandImageView);
 	}
@@ -264,12 +272,18 @@ public class OceanExplorer extends Application{
 	public void checkPowerUp() {
 		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 4) {
 			ship = new Paddle(ship);
+			map[ship.getShipLocation().x][ship.getShipLocation().y] = 0;
+			paddleImageView.setX(-100);
 		}
 		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 5) {
 			ship = new RocketBooster(ship);
+			map[ship.getShipLocation().x][ship.getShipLocation().y] = 0;
+			rocketImageView.setX(-100);
 		}
 		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 6) {
 			ship = new Booze(ship);
+			map[ship.getShipLocation().x][ship.getShipLocation().y] = 0;
+			boozeImageView.setX(-100);
 		}
 	}
 	

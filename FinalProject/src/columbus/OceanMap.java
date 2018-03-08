@@ -25,9 +25,9 @@ public class OceanMap {
 		this.dimension = 30;
 		this.islandCount = 30;
 		this.pirateIslandCount = 2;
-		this.paddleCount = 2;
-		this.boozeCount = 2;
-		this.rocketCount = 2;
+		this.paddleCount = 1;
+		this.boozeCount = 1;
+		this.rocketCount = 1;
 		
 		//Creates the 2 dimensional array with the dimensions specified
 		map = new int[dimension][dimension];
