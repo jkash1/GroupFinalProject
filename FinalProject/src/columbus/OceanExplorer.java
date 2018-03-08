@@ -41,6 +41,7 @@ public class OceanExplorer extends Application{
 	MonsterSpawner monsterSpawner;
 	Thread monstersThread;
 	boolean playing = true;
+	int damage = 0;
 	
 	@Override
 	public void start(Stage oceanStage) throws Exception {
@@ -105,6 +106,8 @@ public class OceanExplorer extends Application{
 					
 					//updates ship with powerups
 					checkPowerUp();
+					//check damage status
+					checkDamage();
 					//Updates the locations of all ships
 					updateShips();
 				}
@@ -255,7 +258,7 @@ public class OceanExplorer extends Application{
 			TreasureIsland.setFitHeight(100);
 			alert.setTitle("End Game");
 			alert.setHeaderText("You Found the Treasure!");
-			alert.setContentText("You Win!");
+			alert.setContentText("You Win!\n Total Damage: " + damage);
 			alert.setGraphic(TreasureIsland);
 			alert.getButtonTypes().remove(0);
 			alert.getButtonTypes().add(new ButtonType("Quit"));
@@ -282,7 +285,7 @@ public class OceanExplorer extends Application{
 				alert.setHeaderText("The Pirates Boarded your ship!");
 
 				alert.setGraphic(pirateShip);
-				alert.setContentText("You Lose!");
+				alert.setContentText("You Lose!\n Total Damage: " + damage);
 				alert.showAndWait();
 				
 				
@@ -319,6 +322,11 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
+	public void checkDamage() {
+		for(Monster monsterSprite : monsterSpawner.monsterSprites)
+			if(ship.getShipLocation().x == monsterSprite.getX() && ship.getShipLocation().y == monsterSprite.getY())
+				damage++;
+	}
 	
 	
 	public boolean checkWin() {
