@@ -1,5 +1,7 @@
 package columbus;
 
+import java.io.File;
+import java.net.URL;
 import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -62,9 +64,6 @@ public class OceanExplorer extends Application{
 		
 		monstersThread = new Thread(monsterSpawner);
 	    monstersThread.start();
-	    
-	    //testing decorator pattern
-	    System.out.println(ship.getAbilities() + " " + ship.getVelocity());
 	    
 		//Start listening for user input and moving the boat
 		startSailing();
@@ -169,7 +168,8 @@ public class OceanExplorer extends Application{
 		}
 		
 		//Creates an Image and ImageView based on the file name
-		Image island = new Image(fileName, scale, scale, false, false);
+		URL url = getClass().getResource(fileName);
+		Image island = new Image(url.toString(), scale, scale, false, false);
 		ImageView islandImageView = new ImageView(island);
 		
 		//Sets the image view to the location passed in
@@ -220,7 +220,8 @@ public class OceanExplorer extends Application{
 		}
 		
 		//Creates an image and image view with the given file name
-		Image shipImage = new Image(fileName, scale, scale, false, false);
+		URL url = getClass().getResource(fileName);
+		Image shipImage = new Image(url.toString(), scale, scale, false, false);
 		ImageView shipImageView = new ImageView(shipImage);
 		
 		//Sets the image views location to the location of the ship
