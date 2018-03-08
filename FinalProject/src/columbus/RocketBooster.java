@@ -21,8 +21,8 @@ public class RocketBooster extends PowerUps{
 
 
 	@Override
-	public void moveNorth() {
-		ability.moveNorth();
+	public void moveNorth(int velocity) {
+		ability.moveNorth(velocity);
 		// TODO Auto-generated method stub
 		
 	}
@@ -30,8 +30,8 @@ public class RocketBooster extends PowerUps{
 
 
 	@Override
-	public void moveEast() {
-		ability.moveEast();
+	public void moveEast(int velocity) {
+		ability.moveEast(velocity);
 		// TODO Auto-generated method stub
 		
 	}
@@ -39,8 +39,8 @@ public class RocketBooster extends PowerUps{
 
 
 	@Override
-	public void moveSouth() {
-		ability.moveSouth();
+	public void moveSouth(int velocity) {
+		ability.moveSouth(velocity);
 		// TODO Auto-generated method stub
 		
 	}
@@ -48,8 +48,8 @@ public class RocketBooster extends PowerUps{
 
 
 	@Override
-	public void moveWest() {
-		ability.moveWest();
+	public void moveWest(int velocity) {
+		ability.moveWest(velocity);
 		// TODO Auto-generated method stub
 		
 	}
@@ -84,7 +84,7 @@ public class RocketBooster extends PowerUps{
 	@Override
 	public int getVelocity() {
 		// TODO Auto-generated method stub
-		return ability.getVelocity();
+		return ability.getVelocity()+3;
 	}
 	
 

@@ -10,6 +10,7 @@ import columbus.OceanMap;
 
 public class PirateShipTest {
 	columbus.OceanMap oceanMap;
+	int velocity = 1;
 
 	@Test
 	public void test() {
@@ -19,7 +20,7 @@ public class PirateShipTest {
 	@Test
 	public void PirateShipMoveTest() {
 		columbus.PirateShip pirate = new columbus.PirateShip(0,0);
-		pirate.moveEast();
+		pirate.moveEast(velocity);
 		Point loc = pirate.getShipLocation();
 		assertEquals(loc, new Point(1,0));
 	}

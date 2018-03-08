@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Booze implements ShipInterface{
 	ShipInterface ability;
-	
+	int velocity;
 	public Booze(ShipInterface ability) {
 		this.ability = ability;
 	}
@@ -15,29 +15,29 @@ public class Booze implements ShipInterface{
 	}
 
 	@Override
-	public void moveNorth() {
-		ability.moveSouth();
+	public void moveNorth(int velocity) {
+		ability.moveSouth(velocity);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveEast() {
-		ability.moveWest();
+	public void moveEast(int velocity) {
+		ability.moveWest(velocity);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveSouth() {
-		ability.moveNorth();
+	public void moveSouth(int velocity) {
+		ability.moveNorth(velocity);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveWest() {
-		ability.moveEast();
+	public void moveWest(int velocity) {
+		ability.moveEast(velocity);
 		// TODO Auto-generated method stub
 		
 	}

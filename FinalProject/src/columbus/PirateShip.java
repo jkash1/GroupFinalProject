@@ -36,46 +36,46 @@ public class PirateShip implements Observer, ShipInterface {
 		return location;
 	}
 	
-	public void moveNorth() {
+	public void moveNorth(int velocity) {
 		//Checks if the ship is not already at the top edge of the map
 		if(location.y > 0) {
 			//Checks if the space above is a water square
 			if(map[location.x][location.y - 1] == 0) {
 				//Moves the ship 1 square north
-				location.y-= velocity;
+				location.y--;
 			}
 		}
 	}
 
-	public void moveEast() {
+	public void moveEast(int velocity) {
 		//Checks if the ship is not already at the right edge of the map
 		if(location.x < oceanMap.dimension - 1) {
 			//Checks if the space to the right is a water square
 			if(map[location.x + 1][location.y] == 0) {
 				//Moves the ship 1 square east
-				location.x+=velocity;
+				location.x++;
 			}
 		}
 	}
 
-	public void moveSouth() {
+	public void moveSouth(int velocity) {
 		//Checks if the ship is not already at the bottom edge of the map
 		if(location.y < oceanMap.dimension - 1) {
 			//Checks if the space below is a water square
 			if(map[location.x][location.y + 1] == 0) {
 				//Moves the ship 1 square south
-				location.y+=velocity;
+				location.y++;
 			}
 		}
 	}
 
-	public void moveWest() {
+	public void moveWest(int velocity) {
 		//Checks if the ship is not already at the left edge of the map
 		if(location.x > 0) {
 			//Checks if the space to the left is a water square
 			if(map[location.x - 1][location.y] == 0) {
 				//Moves the ship 1 square west
-				location.x-=velocity;
+				location.x--;
 			}
 		}
 	}
@@ -94,16 +94,16 @@ public class PirateShip implements Observer, ShipInterface {
 			//Moves based on the recommended move
 			switch(move) {
 			case("UP"):
-				moveNorth();
+				moveNorth(velocity);
 				break;
 			case("DOWN"):
-				moveSouth();
+				moveSouth(velocity);
 				break;
 			case("LEFT"):
-				moveWest();
+				moveWest(velocity);
 				break;
 			case("RIGHT"):
-				moveEast();
+				moveEast(velocity);
 				break;
 			}
 		}

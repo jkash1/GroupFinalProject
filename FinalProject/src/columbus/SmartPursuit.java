@@ -123,7 +123,7 @@ public class SmartPursuit implements PursuitStrategy {
 		if(point.y > dimension || point.y < 0) return false;
 		
 		//Returns false if the square of the map is not ocean
-		if(map[point.x][point.y] != 0) return false;
+		if(map[point.x][point.y] == 1 || map[point.x][point.y] == 3) return false;
 		
 		return true;
 	}

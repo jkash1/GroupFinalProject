@@ -11,13 +11,13 @@ public class SimplePursuit implements PursuitStrategy {
 		String move = null;
 		
 		//Decides where to move just based on location in comparison to the player ship
-		if(location.x < otherLocation.x && map[location.x + 1][location.y] == 0)
+		if(location.x < otherLocation.x && map[location.x + 1][location.y] != 1 && map[location.x + 1][location.y] != 3)
 			move = "RIGHT";
-		else if(location.x > otherLocation.x && map[location.x - 1][location.y] == 0)
+		else if(location.x > otherLocation.x && map[location.x - 1][location.y] != 1 && map[location.x - 1][location.y] != 3)
 			move = "LEFT";
-		else if(location.y < otherLocation.y && map[location.x][location.y + 1] == 0)
+		else if(location.y < otherLocation.y && map[location.x][location.y + 1] != 1 && map[location.x][location.y + 1] != 3)
 			move = "DOWN";
-		else if(location.y > otherLocation.y && map[location.x][location.y - 1] == 0)
+		else if(location.y > otherLocation.y && map[location.x][location.y - 1] != 1 && map[location.x][location.y - 1] != 3)
 			move = "UP";
 		else
 			move = "NONE";

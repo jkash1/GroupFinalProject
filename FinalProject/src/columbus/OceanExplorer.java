@@ -64,10 +64,7 @@ public class OceanExplorer extends Application{
 	    monstersThread.start();
 	    
 	    //testing decorator pattern
-	    ship = new Paddle(ship);
-	    //ship = new RocketBooster(ship);
-	    ship = new Booze(ship);
-	    System.out.println(ship.getAbilities());
+	    System.out.println(ship.getAbilities() + " " + ship.getVelocity());
 	    
 		//Start listening for user input and moving the boat
 		startSailing();
@@ -81,19 +78,19 @@ public class OceanExplorer extends Application{
 					switch(ke.getCode()) {
 					case D:
 					case RIGHT:
-						ship.moveEast();
+						ship.moveEast(ship.getVelocity());
 						break;
 					case A:	
 					case LEFT:
-						ship.moveWest();
+						ship.moveWest(ship.getVelocity());
 						break;
 					case W:
 					case UP:
-						ship.moveNorth();
+						ship.moveNorth(ship.getVelocity());
 						break;
 					case S:	
 					case DOWN:
-						ship.moveSouth();
+						ship.moveSouth(ship.getVelocity());
 						break;
 					case Q:
 						System.exit(0);
@@ -101,6 +98,8 @@ public class OceanExplorer extends Application{
 						break;
 					}
 					
+					//updates ship with powerups
+					checkPowerUp();
 					//Updates the locations of all ships
 					updateShips();
 				}
@@ -261,6 +260,20 @@ public class OceanExplorer extends Application{
 			}
 		}
 	}
+	
+	public void checkPowerUp() {
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 4) {
+			ship = new Paddle(ship);
+		}
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 5) {
+			ship = new RocketBooster(ship);
+		}
+		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 6) {
+			ship = new Booze(ship);
+		}
+	}
+	
+	
 	
 	public boolean checkWin() {
 		boolean output = false;
