@@ -1,5 +1,6 @@
 package columbus;
 
+import java.net.URL;
 import java.util.Random;
 
 import javafx.scene.image.Image;
@@ -19,7 +20,8 @@ public class GiantSquid implements Monster{
 	public GiantSquid(int x, int y, int scalingFactor) {
 		this.x = x;
 		this.y = y;
-		Image squid = new Image("/images/squid.png", scalingFactor, scalingFactor, false, false);
+		URL url = getClass().getResource("/images/squid.png");
+		Image squid = new Image(url.toString(), scalingFactor, scalingFactor, false, false);
 		squidImage = new ImageView(squid);
 		setPositionX(x);
 		setPositionY(y);

@@ -1,5 +1,6 @@
 package columbus;
 
+import java.net.URL;
 import java.util.Random;
 
 import javafx.scene.image.Image;
@@ -19,7 +20,8 @@ public class Shark implements Monster {
 	public Shark(int x, int y, int scalingFactor) {
 		this.x = x;
 		this.y = y;
-		Image shark = new Image("/images/shark.png", scalingFactor, scalingFactor, false, false);
+		URL url = getClass().getResource("/images/shark.png");
+		Image shark = new Image(url.toString(), scalingFactor, scalingFactor, false, false);
 		sharkImage = new ImageView(shark);
 		setPositionX(x);
 		setPositionY(y);
