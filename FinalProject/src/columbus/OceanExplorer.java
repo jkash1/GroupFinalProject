@@ -5,12 +5,15 @@ import java.net.URL;
 import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
 
 import javafx.scene.control.Alert.AlertType;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -258,14 +261,18 @@ public class OceanExplorer extends Application{
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
 				System.out.println("you lose");
 				Alert alert = new Alert(AlertType.INFORMATION);
+				ImageView pirateShip = new ImageView("/images/pirateShip.png/");
+				pirateShip.setFitWidth(100);
+				pirateShip.setFitHeight(100);
 				alert.setTitle("End Game");
 				alert.setHeaderText("The Pirates Boarded your ship!");
-				alert.setContentText("You Loose!");
+				alert.setGraphic(pirateShip);
+				alert.setContentText("You Lose!");
 				alert.showAndWait();
 				
 				
 				stopPlaying();
-
+				System.exit(0);
 			}
 		}
 	}

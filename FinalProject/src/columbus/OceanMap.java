@@ -1,5 +1,6 @@
 package columbus;
 
+import java.awt.Point;
 import java.util.Random;
 
 public class OceanMap {
@@ -99,9 +100,30 @@ public class OceanMap {
 	}
 	
 	
-	public static int whatIs(int x, int y) {
+	public static String whatIs(int x, int y) {
 		//This method returns an integer signifying the object at the given "coordinates"
 		//Used for JUnit testing
-		return map[x][y];
+		if (map[x][y] == (0)) return "ocean";
+		else if (map[x][y] == 1) return "island";
+		else if (map[x][y] == 2) return "pirateIsland";
+		else if (map[x][y] == 3) return "paddle";
+		else if (map[x][y] == 4) return "treasueIsland";
+		else if (map[x][y] == 5) return "rocket";
+		else return "";
 	}
+	
+	public static String whatIs(Point p) {
+		//This method returns an integer signifying the object at the given "coordinates"
+		//Used for JUnit testing
+		int x = p.x;
+		int y = p.y;
+		if (map[x][y] == (0)) return "ocean";
+		else if (map[x][y] == 1) return "island";
+		else if (map[x][y] == 2) return "pirateIsland";
+		else if (map[x][y] == 3) return "paddle";
+		else if (map[x][y] == 4) return "treasueIsland";
+		else if (map[x][y] == 5) return "rocket";
+		else return "";
+	}
+	
 }

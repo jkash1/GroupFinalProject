@@ -3,10 +3,13 @@ package testCases;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Point;
+
 import org.junit.Test;
 
 import columbus.OceanExplorer;
 import columbus.OceanMap;
+import columbus.PlayerShip;
 
 public class OceanMapTest {
 	columbus.OceanMap oceanMap;
@@ -19,8 +22,11 @@ public class OceanMapTest {
 		@Test
 		public void OceanMapTest() {
 			oceanMap = OceanMap.getInstance();
-			int cell = columbus.OceanMap.whatIs(0,0);
-			assertTrue(cell >= 0);
+			
+			PlayerShip ps = new PlayerShip();
+			Point loc = ps.getShipLocation();
+			String cell = columbus.OceanMap.whatIs(loc);
+			assertTrue(cell == "ocean");
 		}
 		
 		@Test
