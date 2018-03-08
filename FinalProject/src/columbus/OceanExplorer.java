@@ -4,6 +4,7 @@ package columbus;
 import java.net.URL;
 import java.util.LinkedList;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 //import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -14,7 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 //import javafx.scene.control.Button;
 //import javafx.scene.control.Dialog;
 //import javafx.scene.control.Label;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
 import javafx.scene.image.Image;
@@ -41,6 +42,7 @@ public class OceanExplorer extends Application{
 	MonsterSpawner monsterSpawner;
 	Thread monstersThread;
 	boolean playing = true;
+	boolean hard = true;
 	int damage = 0;
 	
 	@Override
@@ -56,9 +58,22 @@ public class OceanExplorer extends Application{
 		
 		//Creates a pane, scene, and draws the map
 		root = new AnchorPane();
-		scene = new Scene(root, scale * dimensions, scale * dimensions);
+		scene = new Scene(root, scale * dimensions, (scale * dimensions) + (scale * 2));
 		drawMap();
 		root.getChildren().add(shipImageView);
+		
+		Button difficulty = new Button("Switch Difficulty to Easy");
+		difficulty.setMinHeight(2 * scale);
+		difficulty.setMinWidth((dimensions * scale) / 2);
+		difficulty.setLayoutX((dimensions * scale) / 2);
+		difficulty.setLayoutY(dimensions * scale);
+		root.getChildren().add(difficulty);
+		
+		difficulty.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				changeDifficulty(difficulty);
+			}
+		});
 		
 		//Sets the scene, adds a title to the window, and shows it
 		oceanStage.setScene(scene);
@@ -74,6 +89,16 @@ public class OceanExplorer extends Application{
 	    
 		//Start listening for user input and moving the boat
 		startSailing();
+	}
+	
+	public void changeDifficulty(Button button) {
+		hard = !hard;
+		
+		for(ShipInterface p : pirates) {
+			((PirateShip) p).setStrategy(hard ? new SmartPursuit() : new SimplePursuit());
+		}
+		
+		button.setText(hard ? "Set Difficulty to Easy" : "Set Difficulty to Hard");
 	}
 	
 	public void startSailing() {
