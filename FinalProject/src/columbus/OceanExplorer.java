@@ -248,7 +248,9 @@ public class OceanExplorer extends Application{
 			System.out.println("you win");
 			stopPlaying();
 			Alert alert = new Alert(AlertType.INFORMATION);
-			ImageView TreasureIsland = new ImageView("/images/treasureIsland.png/");
+			URL url = getClass().getResource("/images/treasureIsland.png");
+			Image treasure = new Image(url.toString(), 100, 100, false, false);
+			ImageView TreasureIsland = new ImageView(treasure);
 			TreasureIsland.setFitWidth(100);
 			TreasureIsland.setFitHeight(100);
 			alert.setTitle("End Game");
@@ -271,7 +273,9 @@ public class OceanExplorer extends Application{
 			//TODO This is the lose condition but it currently only prints to the console
 			if(pirates.get(i).getShipLocation().equals(ship.getShipLocation())) {
 				Alert alert = new Alert(AlertType.INFORMATION);
-				ImageView pirateShip = new ImageView("/images/pirateShip.png/");
+				URL url = getClass().getResource("/images/pirateShip.png");
+				Image pirate = new Image(url.toString(), 100, 100, false, false);
+				ImageView pirateShip = new ImageView(pirate);
 				pirateShip.setFitWidth(100);
 				pirateShip.setFitHeight(100);
 				alert.setTitle("End Game");
