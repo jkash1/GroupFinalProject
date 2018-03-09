@@ -3,9 +3,12 @@ package columbus;
 //import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
+
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Parent;
 //import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -17,25 +20,28 @@ import javafx.scene.control.Alert.AlertType;
 //import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class OceanExplorer extends Application{
 
 	int scale = 20;
 	public static int dimensions;
-	Image shipImage, pirateImage, IslandImage;
+	Image shipImage, pirateImage, IslandImage, columbusImage;
 	ImageView shipImageView, paddleImageView, rocketImageView, boozeImageView;
 	OceanMap oceanMap;
 	int[][] map;
-	Scene scene;
+	Scene scene1, scene2;
 	AnchorPane root;
 	ShipInterface ship;	
 	LinkedList<ShipInterface> pirates = new LinkedList<ShipInterface>();
@@ -43,6 +49,8 @@ public class OceanExplorer extends Application{
 	LinkedList<Rectangle> healthBar = new LinkedList<Rectangle>();
 	MonsterSpawner monsterSpawner;
 	Thread monstersThread;
+	Stage menu;
+	private GameMenu gamemenu;
 	boolean playing = true;
 	boolean hard = true;
 	int damage = 0;
@@ -50,6 +58,24 @@ public class OceanExplorer extends Application{
 	@Override
 	public void start(Stage oceanStage) throws Exception {
 		//Gets an instance of the ocean map, gets its dimensions, and gets the map from it
+		menu = oceanStage;
+		Pane root1 = new Pane();
+
+		Image colimg = new Image("/images/columbusship.jpg");
+		ImageView colimgview = new ImageView(colimg);
+		gamemenu = new GameMenu();
+		
+		colimgview.setFitWidth(800);
+		colimgview.setFitHeight(600);
+		
+		root1.getChildren().addAll(colimgview, gamemenu);
+		
+		
+		scene1 = new Scene(root1);
+		menu.setScene(scene1);
+		menu.setTitle("Columbus Sails the Ocean Blue");
+		menu.show();
+		
 		oceanMap = OceanMap.getInstance();
 		dimensions = oceanMap.getDimension();
 		map = oceanMap.getMap();
@@ -60,7 +86,7 @@ public class OceanExplorer extends Application{
 		
 		//Creates a pane, scene, and draws the map
 		root = new AnchorPane();
-		scene = new Scene(root, scale * dimensions, (scale * dimensions) + (scale * 2));
+		scene2 = new Scene(root, scale * dimensions, (scale * dimensions) + (scale * 2));
 		drawMap();
 		root.getChildren().add(shipImageView);
 		
@@ -92,10 +118,10 @@ public class OceanExplorer extends Application{
 		}
 		
 		//Sets the scene, adds a title to the window, and shows it
-		oceanStage.setScene(scene);
+	/*	oceanStage.setScene(scene2);
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
 		oceanStage.show();
-		
+		*/
 		//Spawns the monsters and starts the thread
 		monsterSpawner = new MonsterSpawner(20);
 		monsterSpawner.addToPane(root.getChildren());
@@ -120,7 +146,7 @@ public class OceanExplorer extends Application{
 	public void startSailing() {
 		if(playing) {
 			//Creates a new key event handler to move the player
-			scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			scene2.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				public void handle(KeyEvent ke) {
 					switch(ke.getCode()) {
 					case D:
@@ -440,4 +466,64 @@ public class OceanExplorer extends Application{
 		//Launches the game
 		launch(args);
 	}
+	
+
+	private class GameMenu extends Parent{
+		public GameMenu() {
+			VBox menu0 = new VBox(15);
+			VBox menu1 = new VBox(15);
+			
+			menu0.setTranslateX(100);
+			menu0.setTranslateY(200);
+			
+			menu1.setTranslateX(100);
+			menu1.setTranslateY(200);
+			
+			final int offset = 400;
+			
+			
+			MenuButton btnPlay = new MenuButton("PLAY");
+			btnPlay.setOnMouseClicked(event -> {
+				menu.setScene(scene2);
+				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+				//Button button1 = new Button("Play Game");
+				//	button1.setOnAction(e-> menu.setScene(scene2));
+				
+				ft.setFromValue(1);
+				ft.setToValue(0);
+				ft.setOnFinished(evt -> this.setVisible(false));
+				ft.play();
+			});
+			
+			MenuButton btnOptions = new MenuButton("Options");
+			btnOptions.setOnMouseClicked(event -> {
+				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+				ft.setFromValue(1);
+				ft.setToValue(0);
+				ft.setOnFinished(evt -> this.setVisible(false));
+				ft.play();
+			});
+			
+			MenuButton btnQuit = new MenuButton("Quit");
+			btnQuit.setOnMouseClicked(event -> {
+				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+				ft.setFromValue(1);
+				ft.setToValue(0);
+				ft.setOnFinished(evt -> this.setVisible(false));
+				ft.play();
+			});
+			
+			menu0.getChildren().addAll(btnPlay, btnOptions, btnQuit);
+			
+			Rectangle bg = new Rectangle(800,600);
+			bg.setFill(Color.GREY);
+			bg.setOpacity(0.4);
+			
+			getChildren().addAll(bg, menu0);
+			
+		}
+	}
+	
+
+	
 }
