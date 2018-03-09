@@ -506,6 +506,7 @@ public class OceanExplorer extends Application{
 			
 			MenuButton btnQuit = new MenuButton("Quit");
 			btnQuit.setOnMouseClicked(event -> {
+				System.exit(0);
 				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
 				ft.setFromValue(1);
 				ft.setToValue(0);
