@@ -170,9 +170,14 @@ public class OceanExplorer extends Application{
 						ship.moveSouth(ship.getVelocity());
 						break;
 					case Q:
+						//to avoid accidental quitting, player must confirm action
 						Alert quitAlert = new Alert(AlertType.CONFIRMATION);
+						URL plank = getClass().getResource("/images/plank.png");
+						Image plankImage = new Image(plank.toString(), 100, 100, false, false);
+						ImageView plankImageView = new ImageView(plankImage);
 						quitAlert.setHeaderText("Walk the plank?");
 						quitAlert.setContentText("Are you sure you want to quit?");
+						quitAlert.setGraphic(plankImageView);
 						ButtonType ok = ButtonType.OK;
 						Optional<ButtonType> result = quitAlert.showAndWait();
 						if (result.isPresent() && result.get() == ok) {
