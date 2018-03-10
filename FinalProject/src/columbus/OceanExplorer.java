@@ -4,6 +4,7 @@ package columbus;
 import java.net.URL;
 import java.util.LinkedList;
 //import java.util.Optional;
+import java.util.Optional;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -177,7 +178,7 @@ public class OceanExplorer extends Application{
 						break;
 					case Q:
 						//to avoid accidental quitting, player must confirm action
-			/*			Alert quitAlert = new Alert(AlertType.CONFIRMATION);
+						Alert quitAlert = new Alert(AlertType.CONFIRMATION);
 						URL plank = getClass().getResource("/images/plank.png");
 						Image plankImage = new Image(plank.toString(), 100, 100, false, false);
 						ImageView plankImageView = new ImageView(plankImage);
@@ -186,9 +187,9 @@ public class OceanExplorer extends Application{
 						quitAlert.setGraphic(plankImageView);
 						ButtonType ok = ButtonType.OK;
 						Optional<ButtonType> result = quitAlert.showAndWait();
-						if (result.isPresent() && result.get() == ok) {*/
+						if (result.isPresent() && result.get() == ok) {
 							System.exit(0);
-					//	}
+						}
 						
 						
 					default:
