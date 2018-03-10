@@ -3,13 +3,14 @@ package columbus;
 //import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
-import java.util.Optional;
+//import java.util.Optional;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 //import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -17,11 +18,13 @@ import javafx.scene.control.Alert;
 
 
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.Glow;
 //import javafx.scene.control.Button;
 //import javafx.scene.control.Dialog;
 //import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -31,9 +34,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -68,13 +74,13 @@ public class OceanExplorer extends Application{
 		Image colimg = new Image("/images/columbusship.jpg");
 		ImageView colimgview = new ImageView(colimg);
 		gamemenu = new GameMenu();
-		
+				
 		colimgview.setFitWidth(800);
 		colimgview.setFitHeight(600);
-		
+				
 		root1.getChildren().addAll(colimgview, gamemenu);
-		
-		
+				
+				
 		scene1 = new Scene(root1);
 		menu.setScene(scene1);
 		menu.setTitle("Columbus Sails the Ocean Blue");
@@ -171,7 +177,7 @@ public class OceanExplorer extends Application{
 						break;
 					case Q:
 						//to avoid accidental quitting, player must confirm action
-						Alert quitAlert = new Alert(AlertType.CONFIRMATION);
+			/*			Alert quitAlert = new Alert(AlertType.CONFIRMATION);
 						URL plank = getClass().getResource("/images/plank.png");
 						Image plankImage = new Image(plank.toString(), 100, 100, false, false);
 						ImageView plankImageView = new ImageView(plankImage);
@@ -180,9 +186,9 @@ public class OceanExplorer extends Application{
 						quitAlert.setGraphic(plankImageView);
 						ButtonType ok = ButtonType.OK;
 						Optional<ButtonType> result = quitAlert.showAndWait();
-						if (result.isPresent() && result.get() == ok) {
+						if (result.isPresent() && result.get() == ok) {*/
 							System.exit(0);
-						}
+					//	}
 						
 						
 					default:
@@ -488,15 +494,17 @@ public class OceanExplorer extends Application{
 
 	private class GameMenu extends Parent{
 		public GameMenu() {
+			
 			VBox menu0 = new VBox(15);
 			VBox menu1 = new VBox(15);
 			
 			menu0.setTranslateX(100);
 			menu0.setTranslateY(200);
 			
+			/*
 			menu1.setTranslateX(100);
 			menu1.setTranslateY(200);
-			
+			*/
 			final int offset = 400;
 			
 			
@@ -512,6 +520,12 @@ public class OceanExplorer extends Application{
 				ft.setOnFinished(evt -> this.setVisible(false));
 				ft.play();
 			});
+			
+			/*ss
+			MenuButton btnControls = new MenuButton("Controls");
+			btnControls.setOnMouseClicked(event -> {
+				FadeTransition ft = new FadeTransition(duration.seconds)
+			})*/
 			
 			MenuButton btnOptions = new MenuButton("Options");
 			btnOptions.setOnMouseClicked(event -> {
@@ -543,6 +557,38 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
+	private class MenuButton extends StackPane{
+		private Text text;
+		
+		
+		public MenuButton(String name) {
+			text = new Text(name);
+			text.setFont(Font.font(20));
+			
+			Rectangle bg = new Rectangle(250, 30);
+			bg.setOpacity(0.5);
+			bg.setFill(Color.BLACK);
+			bg.setEffect(new GaussianBlur(3.5));
+			
+			setAlignment(Pos.CENTER_LEFT);
+			setRotate(-0.5);
+			getChildren().addAll(bg, text);
+			
+			setOnMouseEntered(event -> {
+				bg.setTranslateX(10);
+				text.setTranslateX(10);
+				bg.setFill(Color.WHITE);
+				text.setFill(Color.BLACK);
+			});
+			
+			DropShadow drop = new DropShadow(50, Color.WHITE);
+			drop.setInput(new Glow());
+			
+			setOnMousePressed(event -> setEffect(drop));
+			setOnMouseReleased(event -> setEffect(null));
+			
+		}
 
+	}
 	
 }
