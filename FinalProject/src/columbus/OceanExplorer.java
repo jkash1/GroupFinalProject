@@ -3,9 +3,11 @@ package columbus;
 //import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Optional;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -19,8 +21,10 @@ import javafx.scene.control.Alert.AlertType;
 //import javafx.scene.control.Dialog;
 //import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -166,7 +170,16 @@ public class OceanExplorer extends Application{
 						ship.moveSouth(ship.getVelocity());
 						break;
 					case Q:
-						System.exit(0);
+						Alert quitAlert = new Alert(AlertType.CONFIRMATION);
+						quitAlert.setHeaderText("Walk the plank?");
+						quitAlert.setContentText("Are you sure you want to quit?");
+						ButtonType ok = ButtonType.OK;
+						Optional<ButtonType> result = quitAlert.showAndWait();
+						if (result.isPresent() && result.get() == ok) {
+							System.exit(0);
+						}
+						
+						
 					default:
 						break;
 					}
