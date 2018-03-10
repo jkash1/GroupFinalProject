@@ -579,6 +579,18 @@ public class OceanExplorer extends Application{
 				text.setTranslateX(10);
 				bg.setFill(Color.WHITE);
 				text.setFill(Color.BLACK);
+				
+			});
+			
+			
+			setOnMouseExited(event -> {
+				bg.setFill(Color.BLACK);
+				bg.setOpacity(0.5);
+				bg.setEffect(new GaussianBlur(3.5));
+				bg.setTranslateX(0);
+				text.setTranslateX(0);
+				
+				
 			});
 			
 			DropShadow drop = new DropShadow(50, Color.WHITE);
