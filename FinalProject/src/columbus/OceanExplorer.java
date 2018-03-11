@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -502,41 +503,45 @@ public class OceanExplorer extends Application{
 			menu0.setTranslateX(100);
 			menu0.setTranslateY(200);
 			
-			/*
+			
 			menu1.setTranslateX(100);
 			menu1.setTranslateY(200);
-			*/
+			
 			final int offset = 400;
 			
+			menu1.setTranslateX(offset);
 			
+			//Creates the Play button in Main Menu
 			MenuButton btnPlay = new MenuButton("PLAY");
 			btnPlay.setOnMouseClicked(event -> {
 				menu.setScene(scene2);
 				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
-				//Button button1 = new Button("Play Game");
-				//	button1.setOnAction(e-> menu.setScene(scene2));
-				
 				ft.setFromValue(1);
 				ft.setToValue(0);
 				ft.setOnFinished(evt -> this.setVisible(false));
 				ft.play();
 			});
 			
-			/*ss
-			MenuButton btnControls = new MenuButton("Controls");
-			btnControls.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(duration.seconds)
-			})*/
-			
+			//Creates Option button in MainMenu
 			MenuButton btnOptions = new MenuButton("Options");
 			btnOptions.setOnMouseClicked(event -> {
-				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
-				ft.setFromValue(1);
-				ft.setToValue(0);
-				ft.setOnFinished(evt -> this.setVisible(false));
-				ft.play();
+				getChildren().add(menu1);
+				TranslateTransition ot = new TranslateTransition(Duration.seconds(0.25), menu0);
+				ot.setToX(menu0.getTranslateX() - offset);
+				
+				TranslateTransition ot1 = new TranslateTransition(Duration.seconds(0.5), menu1);				
+				ot1.setToX(menu0.getTranslateX());
+				
+				ot.play();
+				ot1.play();
+			
+				ot.setOnFinished(evt -> {
+					getChildren().remove(menu0);
+				});
+
 			});
 			
+			//Creates Quit button in Main menu
 			MenuButton btnQuit = new MenuButton("Quit");
 			btnQuit.setOnMouseClicked(event -> {
 				System.exit(0);
@@ -547,7 +552,31 @@ public class OceanExplorer extends Application{
 				ft.play();
 			});
 			
+			//Creates the back button in the options menu
+			MenuButton btnBack = new MenuButton("Go Back");
+			btnBack.setOnMouseClicked(event -> {
+				getChildren().add(menu0);
+				TranslateTransition ot = new TranslateTransition(Duration.seconds(0.25), menu1);
+				ot.setToX(menu1.getTranslateX() + offset);
+				
+				TranslateTransition ot1 = new TranslateTransition(Duration.seconds(0.5), menu0);				
+				ot1.setToX(menu1.getTranslateX());
+				
+				ot.play();
+				ot1.play();
+				
+				ot.setOnFinished(evt -> {
+					getChildren().remove(menu1);
+			});
+		});
+			
+			
+			
+			MenuButton btnControls = new MenuButton("Controls");
+			MenuButton btnDifficulty = new MenuButton("Difficulty");
+			
 			menu0.getChildren().addAll(btnPlay, btnOptions, btnQuit);
+			menu1.getChildren().addAll(btnBack, btnControls, btnDifficulty);
 			
 			Rectangle bg = new Rectangle(800,600);
 			bg.setFill(Color.GREY);
