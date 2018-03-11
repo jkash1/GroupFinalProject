@@ -494,6 +494,10 @@ public class OceanExplorer extends Application{
 	}
 	
 
+	
+	
+	
+	
 	private class GameMenu extends Parent{
 		public GameMenu() {
 			
@@ -502,8 +506,7 @@ public class OceanExplorer extends Application{
 			
 			menu0.setTranslateX(100);
 			menu0.setTranslateY(200);
-			
-			
+		
 			menu1.setTranslateX(100);
 			menu1.setTranslateY(200);
 			
@@ -571,7 +574,6 @@ public class OceanExplorer extends Application{
 		});
 			
 			
-			
 			MenuButton btnControls = new MenuButton("Controls");
 			MenuButton btnDifficulty = new MenuButton("Difficulty");
 			
@@ -595,15 +597,18 @@ public class OceanExplorer extends Application{
 			text = new Text(name);
 			text.setFont(Font.font(20));
 			
+			//Creates the size of all Menu buttons
 			Rectangle bg = new Rectangle(250, 30);
 			bg.setOpacity(0.5);
 			bg.setFill(Color.BLACK);
 			bg.setEffect(new GaussianBlur(3.5));
 			
+			//sets position of buttons
 			setAlignment(Pos.CENTER_LEFT);
 			setRotate(-0.5);
 			getChildren().addAll(bg, text);
 			
+			//Highlights and moves button when hovered over
 			setOnMouseEntered(event -> {
 				bg.setTranslateX(10);
 				text.setTranslateX(10);
@@ -611,8 +616,8 @@ public class OceanExplorer extends Application{
 				text.setFill(Color.BLACK);
 				
 			});
-			
-			
+	
+			//Undoes previous effects when mouse exits hover
 			setOnMouseExited(event -> {
 				bg.setFill(Color.BLACK);
 				bg.setOpacity(0.5);
@@ -620,9 +625,8 @@ public class OceanExplorer extends Application{
 				bg.setTranslateX(0);
 				text.setTranslateX(0);
 				
-				
 			});
-			
+			//sets a glow effect when click on ends effect when click released
 			DropShadow drop = new DropShadow(50, Color.WHITE);
 			drop.setInput(new Glow());
 			
