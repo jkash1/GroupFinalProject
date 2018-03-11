@@ -495,14 +495,13 @@ public class OceanExplorer extends Application{
 	
 
 	
-	
-	
-	
 	private class GameMenu extends Parent{
 		public GameMenu() {
 			
 			VBox menu0 = new VBox(15);
 			VBox menu1 = new VBox(15);
+			VBox menu2 = new VBox(15);
+			
 			
 			menu0.setTranslateX(100);
 			menu0.setTranslateY(200);
@@ -510,10 +509,16 @@ public class OceanExplorer extends Application{
 			menu1.setTranslateX(100);
 			menu1.setTranslateY(200);
 			
+			menu2.setTranslateX(100);
+			menu2.setTranslateY(200);
+			
 			final int offset = 400;
 			
 			menu1.setTranslateX(offset);
-			
+			menu2.setTranslateX(offset);
+			/**
+			 * Main Menu Buttons
+			 */
 			//Creates the Play button in Main Menu
 			MenuButton btnPlay = new MenuButton("PLAY");
 			btnPlay.setOnMouseClicked(event -> {
@@ -555,6 +560,11 @@ public class OceanExplorer extends Application{
 				ft.play();
 			});
 			
+			
+			
+			/**
+			 * Options Menu Buttons
+			 */
 			//Creates the back button in the options menu
 			MenuButton btnBack = new MenuButton("Go Back");
 			btnBack.setOnMouseClicked(event -> {
@@ -573,12 +583,72 @@ public class OceanExplorer extends Application{
 			});
 		});
 			
-			
 			MenuButton btnControls = new MenuButton("Controls");
+			btnControls.setOnMouseClicked(event -> {
+				getChildren().add(menu2);
+				TranslateTransition ot = new TranslateTransition(Duration.seconds(0.25), menu1);
+				ot.setToX(menu1.getTranslateX() - offset);
+			
+				TranslateTransition ot1 = new TranslateTransition(Duration.seconds(0.5), menu2);				
+				ot1.setToX(menu1.getTranslateX());
+			
+				ot.play();
+				ot1.play();
+			
+				ot.setOnFinished(evt -> {
+					getChildren().remove(menu1);
+		});
+	});
+			
+			
+			
+			
+			/**
+			 * Buttons for Controls Menu
+			 */
+			MenuButton btnMain = new MenuButton("Go To Main Menu");
+			btnMain.setOnMouseClicked(event -> {
+				getChildren().add(menu0);
+				TranslateTransition ot = new TranslateTransition(Duration.seconds(0.25), menu2);
+				ot.setToX(menu2.getTranslateX() + offset);
+				
+				TranslateTransition ot1 = new TranslateTransition(Duration.seconds(0.5), menu0);				
+				ot1.setToX(menu2.getTranslateX());
+				
+				ot.play();
+				ot1.play();
+				
+				ot.setOnFinished(evt -> {
+					getChildren().remove(menu2);
+			});
+		});
+			
+			MenuButton btnBack2 = new MenuButton("Go Back");
+			btnBack2.setOnMouseClicked(event -> {
+				getChildren().add(menu1);
+				TranslateTransition ot = new TranslateTransition(Duration.seconds(0.25), menu2);
+				ot.setToX(menu2.getTranslateX() + offset);
+				
+				TranslateTransition ot1 = new TranslateTransition(Duration.seconds(0.5), menu1);				
+				ot1.setToX(menu2.getTranslateX());
+				
+				ot.play();
+				ot1.play();
+				
+				ot.setOnFinished(evt -> {
+					getChildren().remove(menu2);
+			});
+		});
+			
+			
+			
 			MenuButton btnDifficulty = new MenuButton("Difficulty");
+			
+			
 			
 			menu0.getChildren().addAll(btnPlay, btnOptions, btnQuit);
 			menu1.getChildren().addAll(btnBack, btnControls, btnDifficulty);
+			menu2.getChildren().addAll(btnMain, btnBack2);
 			
 			Rectangle bg = new Rectangle(800,600);
 			bg.setFill(Color.GREY);
