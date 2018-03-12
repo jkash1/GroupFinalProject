@@ -2,6 +2,7 @@ package columbus;
 
 import java.util.Random;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -12,11 +13,12 @@ public class MonsterSpawner implements Runnable{
 	int radius;
 	Random random = new Random();
 	int scalingFactor;
+	OceanExplorer gameInstance;
 	
 	//list of all monsters
 	Monster[] monsterSprites = new Monster[20];
 	
-	public MonsterSpawner(int scalingFactor){
+	public MonsterSpawner(int scalingFactor, OceanExplorer instance){
 		
 		//initializes the concrete monster factories
 		MonsterFactory sharkFactory = FactoryChooser.getFactory("Shark");
@@ -36,6 +38,8 @@ public class MonsterSpawner implements Runnable{
 		
 		this.radius = 10;
 		this.scalingFactor = scalingFactor;
+		
+		gameInstance = instance;
 	}
 	
 	//adds the monsters to the scene
@@ -46,21 +50,25 @@ public class MonsterSpawner implements Runnable{
 		}
 	}
 	@Override
-	public void run() {
-		
+	public void run() {		
 		while (true) {
-	    	try {
+			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-	    	for(Monster monsterSprite: monsterSprites){
-	    	
-	    		//move method implements random move method from professor
-	    		monsterSprite.move();
-	    	}
-	      }
-		
-	}
+			for(Monster monsterSprite: monsterSprites){
+				//move method implements random move method from professor
+				monsterSprite.move();
+			}
 
+			if(gameInstance.damage < 3) {
+				Platform.runLater(new Runnable() {
+					public void run() {
+						gameInstance.checkDamage();
+					}
+				});
+			}
+		}
+	}
 }

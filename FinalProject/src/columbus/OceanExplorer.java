@@ -135,7 +135,7 @@ public class OceanExplorer extends Application{
 		oceanStage.show();
 		*/
 		//Spawns the monsters and starts the thread
-		monsterSpawner = new MonsterSpawner(20);
+		monsterSpawner = new MonsterSpawner(20, this);
 		monsterSpawner.addToPane(root.getChildren());
 		
 		monstersThread = new Thread(monsterSpawner);
@@ -199,8 +199,6 @@ public class OceanExplorer extends Application{
 					
 					//updates ship with powerups
 					checkPowerUp();
-					//check damage status
-					checkDamage();
 					//Updates the locations of all ships
 					updateShips();
 				}
@@ -416,7 +414,7 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void checkDamage() {
-		Monster monster = null;
+		Monster monster = new Shark(0,0,0);
 		
 		for(Monster monsterSprite : monsterSpawner.monsterSprites)
 			if(ship.getShipLocation().x == monsterSprite.getX() && ship.getShipLocation().y == monsterSprite.getY()) {
@@ -424,9 +422,11 @@ public class OceanExplorer extends Application{
 				monster = monsterSprite;
 			}
 		
-		for(int i = 0; i < damage; i++) {
-			healthBar.get(i).setFill(Color.ORANGERED);
-			healthBar.get(i).setStroke(Color.RED);
+		if(damage <= 3) {
+			for(int i = 0; i < damage; i++) {
+				healthBar.get(i).setFill(Color.ORANGERED);
+				healthBar.get(i).setStroke(Color.RED);
+			}
 		}
 		
 		if(damage == 3) {
@@ -448,7 +448,6 @@ public class OceanExplorer extends Application{
 			System.exit(0);
 		}
 	}
-	
 	
 	public boolean checkWin() {
 		boolean output = false;
