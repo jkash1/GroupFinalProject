@@ -199,6 +199,8 @@ public class OceanExplorer extends Application{
 					
 					//updates ship with powerups
 					checkPowerUp();
+					//Checks if the ship should take damage from a monster
+					checkDamage();
 					//Updates the locations of all ships
 					updateShips();
 				}
