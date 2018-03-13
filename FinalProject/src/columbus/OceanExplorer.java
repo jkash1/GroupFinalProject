@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -50,7 +51,7 @@ public class OceanExplorer extends Application{
 	int scale = 20;
 	public static int dimensions;
 	Image shipImage, pirateImage, IslandImage, columbusImage;
-	ImageView shipImageView, paddleImageView, rocketImageView, boozeImageView;
+	ImageView shipImageView, paddleImageView, rocketImageView, boozeImageView, whirlImageView;
 	OceanMap oceanMap;
 	int[][] map;
 	Scene scene1, scene2;
@@ -80,7 +81,12 @@ public class OceanExplorer extends Application{
 		colimgview.setFitWidth(800);
 		colimgview.setFitHeight(600);
 				
-		root1.getChildren().addAll(colimgview, gamemenu);
+		Title title = new Title("C O L U M B U S    S A I L S    T H E    D E E P   B L U E ");
+		title.setTranslateX(10);
+		title.setTranslateY(50);
+		
+		
+		root1.getChildren().addAll(colimgview, gamemenu, title);
 				
 				
 		scene1 = new Scene(root1);
@@ -101,7 +107,7 @@ public class OceanExplorer extends Application{
 		scene2 = new Scene(root, scale * dimensions, (scale * dimensions) + (scale * 2));
 		drawMap();
 		root.getChildren().add(shipImageView);
-		
+	
 		Button difficulty = new Button("Switch Difficulty to Easy");
 		difficulty.setMinHeight(2 * scale);
 		difficulty.setMinWidth((dimensions * scale) / 2);
@@ -284,7 +290,7 @@ public class OceanExplorer extends Application{
 			rocketImageView = islandImageView;
 		} else if(fileName == "/images/booze.png") {
 			boozeImageView = islandImageView;
-		}
+		} 
 
 		//Adds the image view to the pane
 		root.getChildren().add(islandImageView);
@@ -411,8 +417,9 @@ public class OceanExplorer extends Application{
 		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 6) {
 			ship = new Booze(ship);
 			map[ship.getShipLocation().x][ship.getShipLocation().y] = 0;
-			boozeImageView.setX(-100);
+			boozeImageView.setX(-100);	
 		}
+		
 	}
 	
 	public void checkDamage() {
@@ -502,7 +509,7 @@ public class OceanExplorer extends Application{
 			VBox menu0 = new VBox(15);
 			VBox menu1 = new VBox(15);
 			VBox menu2 = new VBox(15);
-			
+		
 			
 			menu0.setTranslateX(100);
 			menu0.setTranslateY(200);
@@ -602,8 +609,6 @@ public class OceanExplorer extends Application{
 	});
 			
 			
-			
-			
 			/**
 			 * Buttons for Controls Menu
 			 */
@@ -660,7 +665,28 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
+	public static class Title extends StackPane{
+		public Title(String name) {
+			Rectangle bg = new Rectangle(500,60);
+			bg.setStroke(Color.WHITE);
+			bg.setStrokeWidth(2);
+			bg.setFill(null);
+			
+			Text text = new Text(name);
+			text.setFill(Color.WHITE);
+			text.setFont(Font.font(20));
+			
+			setAlignment(Pos.CENTER);
+			getChildren().addAll(bg,text);
+		}
+	}
+	
+	
+	
+	
 	private class MenuButton extends StackPane{
+		
+		
 		private Text text;
 		
 		
@@ -707,5 +733,6 @@ public class OceanExplorer extends Application{
 		}
 
 	}
+
 	
 }

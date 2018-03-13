@@ -14,6 +14,7 @@ public class PlayerShip extends Observable implements ShipInterface{
 	int count = 0;
 	//String description;
 	
+	
 	public PlayerShip() {
 		//Gets an instance of the ocean map then pulls the map array from it
 		oceanMap = OceanMap.getInstance();
@@ -120,4 +121,6 @@ public class PlayerShip extends Observable implements ShipInterface{
 		// TODO Auto-generated method stub
 		return "Ship";
 	}
+
+	
 }

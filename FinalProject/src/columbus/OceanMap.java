@@ -17,6 +17,9 @@ public class OceanMap {
 	int paddleCount;
 	int boozeCount;
 	int rocketCount;
+	int whirlCount;
+	
+	
 	
 	//Creates a random object to generate island locations
 	Random rand = new Random();
@@ -29,6 +32,7 @@ public class OceanMap {
 		this.paddleCount = 1;
 		this.boozeCount = 1;
 		this.rocketCount = 1;
+		this.whirlCount = 2;
 		
 		//Creates the 2 dimensional array with the dimensions specified
 		map = new int[dimension][dimension];
@@ -40,6 +44,7 @@ public class OceanMap {
 		spawnIslands("paddle", paddleCount);
 		spawnIslands("rocket", rocketCount);
 		spawnIslands("booze", boozeCount);
+		//spawnIslands("whirlpool", whirlCount);
 			
 	}
 	
@@ -57,7 +62,7 @@ public class OceanMap {
 			num = 4;
 		else if(type.equals("rocket"))
 			num = 5;
-		else
+		else 
 			num = 6;
 		
 		while(currentIslands < Count) {
@@ -109,6 +114,7 @@ public class OceanMap {
 		else if (map[x][y] == 3) return "paddle";
 		else if (map[x][y] == 4) return "treasueIsland";
 		else if (map[x][y] == 5) return "rocket";
+		else if (map[x][y] == 6) return "booze";
 		else return "";
 	}
 	
@@ -123,6 +129,7 @@ public class OceanMap {
 		else if (map[x][y] == 3) return "paddle";
 		else if (map[x][y] == 4) return "treasueIsland";
 		else if (map[x][y] == 5) return "rocket";
+		else if (map[x][y] == 6) return "booze";
 		else return "";
 	}
 	
