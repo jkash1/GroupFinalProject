@@ -74,25 +74,29 @@ public class OceanExplorer extends Application{
 		menu = oceanStage;
 		Pane root1 = new Pane();
 
+		//creates Menu background image
 		Image colimg = new Image("/images/columbusship.jpg");
 		ImageView colimgview = new ImageView(colimg);
 		gamemenu = new GameMenu();
 				
+		//Menu dimensions
 		colimgview.setFitWidth(800);
 		colimgview.setFitHeight(600);
 				
+		//calls title class, creates title for menu
 		Title title = new Title("C O L U M B U S    S A I L S    T H E    D E E P   B L U E ");
 		title.setTranslateX(10);
 		title.setTranslateY(50);
 		
-		
+		//adds all menu items
 		root1.getChildren().addAll(colimgview, gamemenu, title);
 				
-				
+		//created menu scene
 		scene1 = new Scene(root1);
 		menu.setScene(scene1);
 		menu.setTitle("Columbus Sails the Ocean Blue");
 		menu.show();
+		
 		
 		oceanMap = OceanMap.getInstance();
 		dimensions = oceanMap.getDimension();
@@ -103,6 +107,7 @@ public class OceanExplorer extends Application{
 		shipImageView = createShipImage(ship);
 		
 		//Creates a pane, scene, and draws the map
+		//currently this is done while the menu is open.
 		root = new AnchorPane();
 		scene2 = new Scene(root, scale * dimensions, (scale * dimensions) + (scale * 2));
 		drawMap();
@@ -140,12 +145,15 @@ public class OceanExplorer extends Application{
 		oceanStage.setTitle("Columbus vs. the Deep Blue");
 		oceanStage.show();
 		*/
+		
+		
 		//Spawns the monsters and starts the thread
 		monsterSpawner = new MonsterSpawner(20, this);
 		monsterSpawner.addToPane(root.getChildren());
 		
+		//Thread now starts on Press of menu button play
 		monstersThread = new Thread(monsterSpawner);
-	    monstersThread.start();
+	   // monstersThread.start();
 	    
 		//Start listening for user input and moving the boat
 		startSailing();
@@ -502,6 +510,13 @@ public class OceanExplorer extends Application{
 	}
 	
 
+	/**
+	 * Below are private classes that create the Game Menu
+	 * @author James
+	 *
+	 */
+	
+	
 	
 	private class GameMenu extends Parent{
 		public GameMenu() {
@@ -531,7 +546,9 @@ public class OceanExplorer extends Application{
 			MenuButton btnPlay = new MenuButton("PLAY");
 			btnPlay.setOnMouseClicked(event -> {
 				menu.setScene(scene2);
-				FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+				//starts monster movement
+				monstersThread.start();
+				FadeTransition ft = new FadeTransition(Duration.seconds(1), this);
 				ft.setFromValue(1);
 				ft.setToValue(0);
 				ft.setOnFinished(evt -> this.setVisible(false));
