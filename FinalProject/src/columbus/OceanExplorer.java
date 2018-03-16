@@ -724,7 +724,7 @@ public class OceanExplorer extends Application{
 			
 			
 			//creates a grey film to make white text more pronounced
-			Rectangle bg = new Rectangle(800,500);
+			Rectangle bg = new Rectangle(800,550);
 			bg.setFill(Color.GREY);
 			bg.setOpacity(0.4);
 			
