@@ -65,6 +65,8 @@ public class GiantSquid implements Monster{
 		squidImage.setY(y * scalingFactor);
 	}
 	
+	//moves monster left to right and moves them to the left edge
+	//when they reach the right edge
 	@Override
 	public void move() {
 		int xMove = getX() + 1;

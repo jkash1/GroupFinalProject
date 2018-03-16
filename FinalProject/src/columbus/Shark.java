@@ -65,6 +65,8 @@ public class Shark implements Monster {
 		sharkImage.setY(y * scalingFactor);
 	}
 	
+	//moves the shark from top to bottom and moves them back
+	//to the top when they reach the bottom
 	@Override
 	public void move() {
 		

@@ -2,6 +2,7 @@ package columbus;
 
 import javafx.scene.image.ImageView;
 
+//This is the interface for the monsters
 public interface Monster {	
 	
 	public ImageView getImage();

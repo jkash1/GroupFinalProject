@@ -49,6 +49,8 @@ public class MonsterSpawner implements Runnable{
 			sceneGraph.add(image);
 		}
 	}
+	
+	//this runs the thread and handles moving the monsters
 	@Override
 	public void run() {		
 		while (true) {
@@ -58,10 +60,11 @@ public class MonsterSpawner implements Runnable{
 				e.printStackTrace();
 			}
 			for(Monster monsterSprite: monsterSprites){
-				//move method implements random move method from professor
+				//calls the move method within the monsters
 				monsterSprite.move();
 			}
 
+			//this makes the game check for damage
 			if(gameInstance.damage < 3) {
 				Platform.runLater(new Runnable() {
 					public void run() {
