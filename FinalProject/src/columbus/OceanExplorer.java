@@ -529,14 +529,17 @@ public class OceanExplorer extends Application{
 	private class GameMenu extends Parent{
 		public GameMenu() {
 			
+			//Creates the buttons in the menus
 			VBox menu0 = new VBox(15);
 			VBox menu1 = new VBox(15);
 			VBox menu2 = new VBox(15);
 		
 			
-			menu0.setTranslateX(100);
-			menu0.setTranslateY(200);
+			//sets the button placement 
+			menu0.setTranslateX(20);
+			menu0.setTranslateY(125);
 		
+			//sets the button placement
 			menu1.setTranslateX(100);
 			menu1.setTranslateY(200);
 			
@@ -653,7 +656,7 @@ public class OceanExplorer extends Application{
 					getChildren().removeAll(menu1);
 			});
 		});
-			
+			//creates the controls button in the options menu
 			MenuButton btnControls = new MenuButton("Controls");
 			btnControls.setOnMouseClicked(event -> {
 				getChildren().addAll(menu2, textOptions);
@@ -675,6 +678,7 @@ public class OceanExplorer extends Application{
 			/**
 			 * Buttons for Controls Menu
 			 */
+			//creates the  main menu button in the controls menu
 			MenuButton btnMain = new MenuButton("Go To Main Menu");
 			btnMain.setOnMouseClicked(event -> {
 				getChildren().addAll(menu0, textmain);
@@ -692,6 +696,7 @@ public class OceanExplorer extends Application{
 			});
 		});
 			
+			//creates the go back button in the controls menu
 			MenuButton btnBack2 = new MenuButton("Go Back");
 			btnBack2.setOnMouseClicked(event -> {
 				getChildren().add(menu1);
@@ -710,15 +715,15 @@ public class OceanExplorer extends Application{
 		});
 			
 			
-			
-			MenuButton btnDifficulty = new MenuButton("Difficulty");
-			
+						
 			
 			
 			menu0.getChildren().addAll(btnPlay, btnOptions, btnQuit);
-			menu1.getChildren().addAll(btnBack, btnControls, btnDifficulty);
+			menu1.getChildren().addAll(btnBack, btnControls);
 			menu2.getChildren().addAll(btnMain, btnBack2);
 			
+			
+			//creates a grey film to make white text more pronounced
 			Rectangle bg = new Rectangle(800,500);
 			bg.setFill(Color.GREY);
 			bg.setOpacity(0.4);
@@ -727,7 +732,7 @@ public class OceanExplorer extends Application{
 			
 		}
 	}
-	
+	//Create the Menu Title
 	public static class Title extends StackPane{
 		public Title(String name) {
 			Rectangle bg = new Rectangle(650,60);
@@ -744,7 +749,11 @@ public class OceanExplorer extends Application{
 		}
 	}
 	
-	
+	/**
+	 * Creates the design for the menu Buttons
+	 * @author James
+	 *
+	 */
 	
 	
 	private class MenuButton extends StackPane{
