@@ -159,12 +159,15 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void changeDifficulty(Button button) {
+		//Switches difficulty
 		hard = !hard;
 		
+		//Sets each pirate to use either smart or simple pursuit based on the hard variable
 		for(ShipInterface p : pirates) {
 			((PirateShip) p).setStrategy(hard ? new SmartPursuit() : new SimplePursuit());
 		}
 		
+		//Sets the button text
 		button.setText(hard ? "Set Difficulty to Easy" : "Set Difficulty to Hard");
 	}
 	
@@ -411,6 +414,7 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void checkPowerUp() {
+		//Checks if the square the player ship is on is a powerup and consumes the powerup and applies it to the ship
 		if(map[ship.getShipLocation().x][ship.getShipLocation().y] == 4) {
 			ship = new Paddle(ship);
 			map[ship.getShipLocation().x][ship.getShipLocation().y] = 0;
@@ -430,14 +434,18 @@ public class OceanExplorer extends Application{
 	}
 	
 	public void checkDamage() {
+		//Creates a generic monster
 		Monster monster = new Shark(0,0,0);
 		
+		//Checks through every monster to see if it makes contact with the player ship
 		for(Monster monsterSprite : monsterSpawner.monsterSprites)
 			if(ship.getShipLocation().x == monsterSprite.getX() && ship.getShipLocation().y == monsterSprite.getY()) {
+				//Adds a point of damage and also keeps track of which monster hit the ship
 				damage++;
 				monster = monsterSprite;
 			}
 		
+		//Handles the health bar based on how much damage the player ship has taken
 		if(damage <= 3) {
 			for(int i = 0; i < damage; i++) {
 				healthBar.get(i).setFill(Color.ORANGERED);
@@ -445,6 +453,7 @@ public class OceanExplorer extends Application{
 			}
 		}
 		
+		//If the player damage is 3, the game ends
 		if(damage == 3) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			URL url = getClass().getResource(monster.getClass() == Shark.class ? "/images/shark.png" : "/images/squid.png");
